@@ -1,0 +1,2 @@
+class UptimeStat < ApplicationRecord
+end

@@ -1,0 +1,32 @@
+<%= form_with(model: scheduled_event) do |form| %>
+  <% if scheduled_event.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(scheduled_event.errors.count, "error") %> prohibited this scheduled_event from being saved:</h2>
+
+      <ul>
+        <% scheduled_event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :event_date, style: "display: block" %>
+    <%= form.datetime_field :event_date %>
+  </div>
+
+  <div>
+    <%= form.label :smart_plug_device_id, style: "display: block" %>
+    <%= form.number_field :smart_plug_device_id %>
+  </div>
+
+  <div>
+    <%= form.label :action, style: "display: block" %>
+    <%= form.text_field :action %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

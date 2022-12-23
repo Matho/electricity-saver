@@ -1,0 +1,2 @@
+module PingStatsHelper
+end

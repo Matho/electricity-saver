@@ -1,0 +1,2 @@
+module UptimeStatsHelper
+end

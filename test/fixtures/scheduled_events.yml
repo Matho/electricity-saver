@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_date: 2022-12-23 18:08:18
+  smart_plug_device_id: 1
+  action: MyString
+
+two:
+  event_date: 2022-12-23 18:08:18
+  smart_plug_device_id: 1
+  action: MyString

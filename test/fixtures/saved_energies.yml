@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  smart_plug_device_id: 1
+  savings: 1
+  network_id: 1
+
+two:
+  smart_plug_device_id: 1
+  savings: 1
+  network_id: 1

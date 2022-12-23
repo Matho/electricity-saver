@@ -1,0 +1,47 @@
+<%= form_with(model: smart_plug_device) do |form| %>
+  <% if smart_plug_device.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(smart_plug_device.errors.count, "error") %> prohibited this smart_plug_device from being saved:</h2>
+
+      <ul>
+        <% smart_plug_device.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :api_title, style: "display: block" %>
+    <%= form.text_field :api_title %>
+  </div>
+
+  <div>
+    <%= form.label :current_state, style: "display: block" %>
+    <%= form.text_field :current_state %>
+  </div>
+
+  <div>
+    <%= form.label :ip_address, style: "display: block" %>
+    <%= form.text_field :ip_address %>
+  </div>
+
+  <div>
+    <%= form.label :network_id, style: "display: block" %>
+    <%= form.number_field :network_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  event_date: 2022-12-23 18:06:53
+  endpoint_device_id: 1
+
+two:
+  title: MyString
+  event_date: 2022-12-23 18:06:53
+  endpoint_device_id: 1

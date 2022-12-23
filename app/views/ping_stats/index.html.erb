@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ping stats</h1>
+
+<div id="ping_stats">
+  <% @ping_stats.each do |ping_stat| %>
+    <%= render ping_stat %>
+    <p>
+      <%= link_to "Show this ping stat", ping_stat %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New ping stat", new_ping_stat_path %>

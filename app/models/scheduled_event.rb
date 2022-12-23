@@ -1,0 +1,2 @@
+class ScheduledEvent < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class SmartPlugDevice < ApplicationRecord
+end

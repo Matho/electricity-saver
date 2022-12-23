@@ -1,0 +1,2 @@
+class SavedEnergy < ApplicationRecord
+end

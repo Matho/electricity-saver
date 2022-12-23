@@ -1,0 +1,32 @@
+<%= form_with(model: saved_energy) do |form| %>
+  <% if saved_energy.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(saved_energy.errors.count, "error") %> prohibited this saved_energy from being saved:</h2>
+
+      <ul>
+        <% saved_energy.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :smart_plug_device_id, style: "display: block" %>
+    <%= form.number_field :smart_plug_device_id %>
+  </div>
+
+  <div>
+    <%= form.label :savings, style: "display: block" %>
+    <%= form.number_field :savings %>
+  </div>
+
+  <div>
+    <%= form.label :network_id, style: "display: block" %>
+    <%= form.number_field :network_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

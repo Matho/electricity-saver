@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @ping_stat %>
+
+<div>
+  <%= link_to "Edit this ping stat", edit_ping_stat_path(@ping_stat) %> |
+  <%= link_to "Back to ping stats", ping_stats_path %>
+
+  <%= button_to "Destroy this ping stat", @ping_stat, method: :delete %>
+</div>

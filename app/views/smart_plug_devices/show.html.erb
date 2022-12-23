@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @smart_plug_device %>
+
+<div>
+  <%= link_to "Edit this smart plug device", edit_smart_plug_device_path(@smart_plug_device) %> |
+  <%= link_to "Back to smart plug devices", smart_plug_devices_path %>
+
+  <%= button_to "Destroy this smart plug device", @smart_plug_device, method: :delete %>
+</div>

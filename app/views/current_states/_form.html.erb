@@ -1,0 +1,32 @@
+<%= form_with(model: current_state) do |form| %>
+  <% if current_state.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(current_state.errors.count, "error") %> prohibited this current_state from being saved:</h2>
+
+      <ul>
+        <% current_state.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :state, style: "display: block" %>
+    <%= form.text_field :state %>
+  </div>
+
+  <div>
+    <%= form.label :smart_plug_device_id, style: "display: block" %>
+    <%= form.number_field :smart_plug_device_id %>
+  </div>
+
+  <div>
+    <%= form.label :network_id, style: "display: block" %>
+    <%= form.number_field :network_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

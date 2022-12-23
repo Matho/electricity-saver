@@ -1,0 +1,2 @@
+module EndpointDevicesHelper
+end

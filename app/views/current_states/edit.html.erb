@@ -1,0 +1,10 @@
+<h1>Editing current state</h1>
+
+<%= render "form", current_state: @current_state %>
+
+<br>
+
+<div>
+  <%= link_to "Show this current state", @current_state %> |
+  <%= link_to "Back to current states", current_states_path %>
+</div>

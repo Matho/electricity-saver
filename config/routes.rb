@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :smart_plug_devices
     resources :endpoint_devices
     resources :dashboards, only: [:index]
+    resources :switch_lists, only: [:index]
     resources :networks
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

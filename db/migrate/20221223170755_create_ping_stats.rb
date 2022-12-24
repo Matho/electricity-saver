@@ -5,9 +5,8 @@ class CreatePingStats < ActiveRecord::Migration[7.0]
       t.integer :response_time, null: true
       t.string :response_code, null: true
       t.string :response_status, null: false
-      t.integer :network_id, null: false
 
-      t.references :network_id
+      t.references :network, null: false
       t.timestamps
     end
   end

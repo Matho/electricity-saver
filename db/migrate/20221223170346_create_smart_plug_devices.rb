@@ -6,9 +6,8 @@ class CreateSmartPlugDevices < ActiveRecord::Migration[7.0]
       t.string :api_title, null: false
       t.string :current_state, null: false
       t.string :ip_address, null: false
-      t.integer :network_id, null: false
 
-      t.references :network_id
+      t.references :network, null: false
       t.timestamps
     end
   end

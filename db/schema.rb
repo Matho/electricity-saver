@@ -15,96 +15,109 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_170928) do
   enable_extension "plpgsql"
 
   create_table "current_states", force: :cascade do |t|
-    t.string "state"
-    t.integer "smart_plug_device_id"
-    t.integer "network_id"
+    t.string "state", null: false
+    t.integer "smart_plug_device_id", null: false
+    t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_current_states_on_network_id"
   end
 
   create_table "endpoint_devices", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.string "gps_position"
     t.text "description"
     t.string "ip_address"
     t.string "contact_info"
-    t.integer "network_id"
+    t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_endpoint_devices_on_network_id"
   end
 
   create_table "event_logs", force: :cascade do |t|
-    t.string "title"
-    t.datetime "event_date", precision: nil
-    t.integer "endpoint_device_id"
+    t.string "title", null: false
+    t.datetime "event_date", precision: nil, null: false
+    t.integer "endpoint_device_id", null: false
+    t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_event_logs_on_network_id"
   end
 
   create_table "networks", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "description"
-    t.boolean "active"
+    t.boolean "active", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "ping_stats", force: :cascade do |t|
-    t.string "ip_addresss"
+    t.string "ip_addresss", null: false
     t.integer "response_time"
     t.string "response_code"
-    t.string "response_status"
+    t.string "response_status", null: false
+    t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_ping_stats_on_network_id"
   end
 
   create_table "rules", force: :cascade do |t|
-    t.string "rule"
-    t.integer "smart_plug_device_id"
-    t.string "action"
+    t.string "rule", null: false
+    t.integer "smart_plug_device_id", null: false
+    t.string "action", null: false
     t.string "cron_monday"
     t.string "cron_tuesday"
     t.string "cron_wednesday"
     t.string "cron_thursday"
     t.string "cron_friday"
+    t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_rules_on_network_id"
   end
 
   create_table "saved_energies", force: :cascade do |t|
-    t.integer "smart_plug_device_id"
+    t.integer "smart_plug_device_id", null: false
     t.integer "savings"
-    t.integer "network_id"
+    t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_saved_energies_on_network_id"
   end
 
   create_table "scheduled_events", force: :cascade do |t|
-    t.datetime "event_date", precision: nil
-    t.integer "smart_plug_device_id"
-    t.string "action"
+    t.datetime "event_date", precision: nil, null: false
+    t.integer "smart_plug_device_id", null: false
+    t.string "action", null: false
+    t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_scheduled_events_on_network_id"
   end
 
   create_table "smart_plug_devices", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "description"
-    t.string "api_title"
-    t.string "current_state"
-    t.string "ip_address"
-    t.integer "network_id"
+    t.string "api_title", null: false
+    t.string "current_state", null: false
+    t.string "ip_address", null: false
+    t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_smart_plug_devices_on_network_id"
   end
 
   create_table "uptime_stats", force: :cascade do |t|
-    t.integer "endpoint_device_id"
-    t.boolean "available"
+    t.integer "endpoint_device_id", null: false
+    t.boolean "available", default: false, null: false
     t.datetime "check_date", precision: nil
-    t.integer "network_id"
+    t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["network_id"], name: "index_uptime_stats_on_network_id"
   end
 
 end

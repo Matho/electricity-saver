@@ -9,9 +9,8 @@ class CreateRules < ActiveRecord::Migration[7.0]
       t.string :cron_wednesday, null: true
       t.string :cron_thursday, null: true
       t.string :cron_friday, null: true
-      t.integer :network_id, null: false
 
-      t.references :network_id
+      t.references :network, null: false
       t.timestamps
     end
   end

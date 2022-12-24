@@ -4,9 +4,8 @@ class CreateScheduledEvents < ActiveRecord::Migration[7.0]
       t.timestamp :event_date, null: false
       t.integer :smart_plug_device_id, null: false
       t.string :action, null: false
-      t.integer :network_id, null: false
 
-      t.references :network_id
+      t.references :network, null: false
       t.timestamps
     end
   end

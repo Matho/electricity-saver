@@ -6,9 +6,8 @@ class CreateEndpointDevices < ActiveRecord::Migration[7.0]
       t.text :description, null: true
       t.string :ip_address, null: true
       t.string :contact_info, null: true
-      t.integer :network_id, null: false
 
-      t.references :network_id
+      t.references :network, null: false
       t.timestamps
     end
   end

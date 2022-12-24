@@ -1,15 +1,17 @@
 class CreateRules < ActiveRecord::Migration[7.0]
   def change
     create_table :rules do |t|
-      t.string :rule
-      t.integer :smart_plug_device_id
-      t.string :action
-      t.string :cron_monday
-      t.string :cron_tuesday
-      t.string :cron_wednesday
-      t.string :cron_thursday
-      t.string :cron_friday
+      t.string :rule, null: false
+      t.integer :smart_plug_device_id, null: false
+      t.string :action, null: false
+      t.string :cron_monday, null: true
+      t.string :cron_tuesday, null: true
+      t.string :cron_wednesday, null: true
+      t.string :cron_thursday, null: true
+      t.string :cron_friday, null: true
+      t.integer :network_id, null: false
 
+      t.references :network_id
       t.timestamps
     end
   end

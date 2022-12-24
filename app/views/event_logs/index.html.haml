@@ -1,0 +1,34 @@
+= render 'shared/breadcrumbs', title: 'Event Logs'
+
+%h1 Event Logs
+
+.row
+  .col.text-end
+    = paginate_helper(@event_logs)
+
+#event_logs
+  - if @event_logs.count > 0
+    %table.table.table-striped
+      %thead
+        %tr
+          %th{scope: "col"} ID
+          %th{scope: "col"} Event
+          %th{scope: "col"} Event Date
+          %th{scope: "col"} Endpoint Device
+          %th{scope: "col"} Actions
+        %tbody{class: 'table-group-divider'}
+        - @event_logs.each do |event_log|
+          %tr
+            %td
+              = event_log.id
+            %td
+              = event_log.status
+            %td
+              = event_log.event_date
+            %td
+              = event_log.endpoint_device.title
+            %td
+              = link_to 'Delete', network_event_log_path(@current_network, event_log), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+
+
+

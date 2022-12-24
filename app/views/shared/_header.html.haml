@@ -63,6 +63,11 @@
                   %use{"xlink:href" => "#bi-gear"}
                 Network profiles
             %li
+              %a.nav-link{href: '/sidekiq', class: 'text-white'}
+                %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
+                  %use{"xlink:href" => "#bi-list-task"}
+                Sidekiq
+            %li
               %a.nav-link{href: destroy_user_session_path, class: 'text-white', data: { turbo_method: :delete } }
                 %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                   %use{"xlink:href" => "#people-circle"}
@@ -88,3 +93,13 @@
                 %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                   %use{"xlink:href" => "#bi-gear"}
                 Network profiles
+            %li
+              %a.nav-link{href: '/sidekiq', class: 'text-white'}
+                %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
+                  %use{"xlink:href" => "#bi-list-task"}
+                Sidekiq
+            %li
+              %a.nav-link{href: destroy_user_session_path, class: 'text-white', data: { turbo_method: :delete } }
+                %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
+                  %use{"xlink:href" => "#people-circle"}
+                Log out

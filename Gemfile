@@ -76,3 +76,4 @@ gem 'bootstrap', '~> 5.2.3'
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
 gem 'devise'
+gem "sidekiq", "~> 7.0"

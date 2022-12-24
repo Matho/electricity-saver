@@ -13,27 +13,7 @@
     = render 'dashboards/smart_plug_devices'
 .row.mt-5
   .col
-    .card{style: "width: 25rem;"}
-      .card-body
-        %h5.card-title Event Log
-        %table.table
-          %thead
-            %tr
-              %th{scope: "col"} Date
-              %th{scope: "col"} Title
-          %tbody{class: 'table-group-divider'}
-            %tr
-              %td 23.12.2022
-              %td
-            %tr
-              %td 22.12.2022
-              %td
-            %tr
-              %td 21.12.2022
-              %td
-            %tr
-              %td 20.12.2022
-              %td
+    = render 'dashboards/event_logs'
   .col
     .card{style: "width: 25rem;"}
       .card-body

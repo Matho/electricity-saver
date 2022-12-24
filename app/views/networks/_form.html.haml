@@ -1,0 +1,20 @@
+= form_with(model: network) do |form|
+  - if network.errors.any?
+    %div{style: "color: red"}
+      %h2
+        = pluralize(network.errors.count, "error")
+        prohibited this network from being saved:
+      %ul
+        - network.errors.each do |error|
+          %li= error.full_message
+  %div
+    = form.label :title, style: "display: block"
+    = form.text_field :title
+  %div
+    = form.label :description, style: "display: block"
+    = form.text_area :description
+  %div
+    = form.label :active, style: "display: block"
+    = form.check_box :active
+  %div
+    = form.submit

@@ -1,0 +1,39 @@
+%h1 Endpoint Devices
+
+.row
+  .col
+    = link_to "New Endpoint Device", new_network_endpoint_device_path(@current_network)
+  .col.text-end
+    = paginate_helper(@endpoint_devices)
+
+#endpoint_devices
+  - if @endpoint_devices.count > 0
+    %table.table.table-striped
+      %thead
+        %tr
+          %th{scope: "col"} ID
+          %th{scope: "col"} Title
+          %th{scope: "col"} Gps Position
+          %th{scope: "col"} Description
+          %th{scope: "col"} IP Address
+      %tbody
+        - @endpoint_devices.each do |endpoint_device|
+          %tr
+            %th{scope: "row"}
+              = endpoint_device.id
+            %td
+              = endpoint_device.title
+            %td
+              = endpoint_device.gps_position
+            %td
+              = endpoint_device.description
+            %td
+              = endpoint_device.ip_address
+            %td
+              = link_to "Show", network_endpoint_device_path(@current_network, endpoint_device)
+              = link_to "Edit", edit_network_endpoint_device_path(@current_network, endpoint_device)
+              = link_to 'Delete', network_endpoint_device_path(@current_network, endpoint_device), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+
+.row
+  .col.text-end
+    = paginate_helper(@endpoint_devices)

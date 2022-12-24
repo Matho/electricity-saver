@@ -1,0 +1,28 @@
+= form_with model: [@current_network, endpoint_device] do |form|
+  - if endpoint_device.errors.any?
+    %div{style: "color: red"}
+      %h2
+        = pluralize(endpoint_device.errors.count, "error")
+        prohibited this endpoint_device from being saved:
+      %ul
+        - endpoint_device.errors.each do |error|
+          %li= error.full_message
+  %div
+    = form.label :title, style: "display: block"
+    = form.text_field :title
+  %div
+    = form.label :gps_position, style: "display: block"
+    = form.text_field :gps_position
+  %div
+    = form.label :description, style: "display: block"
+    = form.text_area :description
+  %div
+    = form.label :ip_address, style: "display: block"
+    = form.text_field :ip_address
+  %div
+    = form.label :contact_info, style: "display: block"
+    = form.text_field :contact_info
+  %div
+    = form.hidden_field :network_id
+  %div
+    = form.submit

@@ -28,6 +28,7 @@
             %td
               = network.active
             %td
+              = link_to "Choose", network_dashboards_path(network)
               = link_to "Show", network_path(network)
               = link_to "Edit", edit_network_path(network)
               = link_to 'Delete', network_path(network), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}

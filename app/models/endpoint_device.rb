@@ -3,4 +3,5 @@ class EndpointDevice < ApplicationRecord
 
   validates :title, presence: true
   validates :network_id, presence: true
+  validates :ip_address, presence: true
 end

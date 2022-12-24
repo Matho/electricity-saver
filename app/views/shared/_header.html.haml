@@ -6,7 +6,6 @@
           %a.d-flex.align-items-center.my-2.my-lg-0.me-lg-auto.text-white.text-decoration-none{href: "/"}
             %svg.bi.me-2{"aria-label" => "Bootstrap", height: "32", role: "img", width: "40"}
               %use{"xlink:href" => "#bootstrap"}
-            = @current_network.title
           %ul.nav.col-12.col-lg-auto.my-2.justify-content-center.my-md-0.text-small
             %li
               %a.nav-link{href: root_path, class: selected_menu(controller_name, 'dashboard')}
@@ -48,6 +47,16 @@
                 %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                   %use{"xlink:href" => "#file-text"}
                 Custom Rules
+            %li
+              %a.nav-link{href: network_endpoint_devices_path(@current_network), class: selected_menu(controller_name, 'endpoint_devices')}
+                %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
+                  %use{"xlink:href" => "#bi-router"}
+                Devices
+            %li
+              %a.nav-link{href: network_smart_plug_devices_path(@current_network), class: selected_menu(controller_name, 'smart_plug_devices')}
+                %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
+                  %use{"xlink:href" => "#bi-plug"}
+                Smart Plugs
             %li
               %a.nav-link{href: network_networks_path(@current_network), class: selected_menu(controller_name, 'networks')}
                 %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}

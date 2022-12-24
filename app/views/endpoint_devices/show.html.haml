@@ -1,0 +1,6 @@
+= render @endpoint_device
+
+%div
+  = link_to "Edit this endpoint device", edit_network_endpoint_device_path(@current_network, @endpoint_device)
+  = link_to "Back to endpoint devices", network_endpoint_devices_path(@current_network)
+  = link_to 'Destroy this endpoint device', network_endpoint_device_path(@current_network, @endpoint_device), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}

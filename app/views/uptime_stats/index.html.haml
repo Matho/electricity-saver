@@ -1,0 +1,43 @@
+%h1>Uptime stats
+
+.row
+  .col
+    = link_to "New uptime stat", new_uptime_stat_path
+  .col.text-end
+    = paginate_helper(@uptime_stats)
+
+#uptime_stats
+  - if uptime_stats.count > 0
+    %table.table.table-striped
+      %thead
+        %tr
+          %th{scope: "col"} ID
+          %th{scope: "col"} Endpoint Device
+          %th{scope: "col"} Available
+          %th{scope: "col"} Active
+          %th{scope: "col"} Check Date
+          %th{scope: "col"} Check Date
+      %tbody
+        - @uptime_stats.each do |uptime_stat|
+          %tr
+            %th{scope: "row"}
+              = uptime_stat.id
+            %td
+              = uptime_stat.endpoint_device_id
+            %td
+              = uptime_stat.available
+            %td
+              = uptime_stat.check_date
+            %td
+              = uptime_stat.check_date
+            %td
+              = link_to "Choose", uptime_stat_dashboards_path(uptime_stat)
+              = link_to "Show", uptime_stat_path(uptime_stat)
+              = link_to "Edit", edit_uptime_stat_path(uptime_stat)
+              = link_to 'Delete', uptime_stat_path(uptime_stat), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+
+.row
+  .col.text-end
+    = paginate_helper(@uptime_stats)
+
+

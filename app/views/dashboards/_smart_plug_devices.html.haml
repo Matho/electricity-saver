@@ -1,0 +1,7 @@
+.card{style: "width: 25rem;"}
+  .card-body
+    %h5.card-title Smart Plug Devices
+    - @smart_plug_devices.each do |smart_plug_device|
+      .form-check.form-switch
+        %input#flexSwitchCheckDefault.form-check-input{role: "switch", type: "checkbox", disabled: true}
+        %label.form-check-label{for: "flexSwitchCheckDefault#{smart_plug_device.id}"}= smart_plug_device.title

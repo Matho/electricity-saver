@@ -10,12 +10,7 @@
   .col
     = render 'dashboards/saved_energy'
   .col
-    .card{style: "width: 25rem;"}
-      .card-body
-        %h5.card-title Starlink Switch
-        .form-check.form-switch
-          %input#flexSwitchCheckDefault.form-check-input{role: "switch", type: "checkbox"}/
-          %label.form-check-label{for: "flexSwitchCheckDefault"} Starlink
+    = render 'dashboards/smart_plug_devices'
 .row.mt-5
   .col
     .card{style: "width: 25rem;"}

@@ -4,7 +4,7 @@ class EndpointDevicesController < ApplicationController
   before_action :set_endpoint_device, only: %i[ show edit update destroy ]
 
   def index
-    @endpoint_devices = @current_network.endpoint_devices.page(params[:page])
+    @endpoint_devices = @current_network.endpoint_devices.page(params[:page]).order('id desc')
   end
 
   def show

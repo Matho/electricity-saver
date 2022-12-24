@@ -1,0 +1,46 @@
+= form_with model: [@current_network, rule] do |form|
+  - if rule.errors.any?
+    %div{style: "color: red"}
+      %h2
+        = pluralize(rule.errors.count, "error")
+        prohibited this rule from being saved:
+      %ul
+        - rule.errors.each do |error|
+          %li= error.full_message
+  %div
+    = form.label :rule, style: "display: block"
+    = form.text_field :rule
+  %div
+    = form.label :smart_plug_device_id, style: "display: block"
+    = form.number_field :smart_plug_device_id
+  %div
+    = form.label :action, style: "display: block"
+    = form.text_field :action
+  %div
+    = form.label :cron_monday, style: "display: block"
+    = form.text_field :cron_monday
+  %div
+    = form.label :cron_tuesday, style: "display: block"
+    = form.text_field :cron_tuesday
+  %div
+    = form.label :cron_wednesday, style: "display: block"
+    = form.text_field :cron_wednesday
+  %div
+    = form.label :cron_thursday, style: "display: block"
+    = form.text_field :cron_thursday
+  %div
+    = form.label :cron_friday, style: "display: block"
+    = form.text_field :cron_friday
+  %div
+    = form.label :cron_saturday, style: "display: block"
+    = form.text_field :cron_saturday
+
+  %div
+    = form.label :cron_sunday, style: "display: block"
+    = form.text_field :cron_sunday
+
+  %div
+    = form.hidden_field :network_id
+
+  %div
+    = form.submit

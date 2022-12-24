@@ -1,0 +1,6 @@
+= render @rule
+
+%div
+  = link_to "Edit this rule", edit_network_rule_path(@current_network, @rule)
+  = link_to "Back to rules", network_rules_path(@current_network)
+  = link_to 'Destroy this rule', network_rule_path(@current_network, @rule), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}

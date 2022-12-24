@@ -7,47 +7,47 @@
             %use{"xlink:href" => "#bootstrap"}
         %ul.nav.col-12.col-lg-auto.my-2.justify-content-center.my-md-0.text-small
           %li
-            %a.nav-link.text-secondary{href: "#"}
+            %a.nav-link{href: root_path, class: selected_menu(controller_name, 'dashboard')}
               %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                 %use{"xlink:href" => "#home"}
               Home
           %li
-            %a.nav-link.text-white{href: "#"}
+            %a.nav-link{href: uptime_stats_path, class: selected_menu(controller_name, 'uptime_stats')}
               %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                 %use{"xlink:href" => "#stopwatch"}
               Uptime Stats
           %li
-            %a.nav-link.text-white{href: "#"}
+            %a.nav-link{href: saved_energies_path, class: selected_menu(controller_name, 'saved_energies')}
               %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                 %use{"xlink:href" => "#currency-exchange"}
               Saved Energy
           %li
-            %a.nav-link.text-white{href: "#"}
+            %a.nav-link{href: '#', class: selected_menu(controller_name, 'switch_lists')}
               %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                 %use{"xlink:href" => "#toggles"}
               Switch List
           %li
-            %a.nav-link.text-white{href: "#"}
+            %a.nav-link{href: event_logs_path, class: selected_menu(controller_name, 'event_logs')}
               %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                 %use{"xlink:href" => "#calendar-week"}
               Event Log
           %li
-            %a.nav-link.text-white{href: "#"}
+            %a.nav-link{href: ping_stats_path, class: selected_menu(controller_name, 'ping_stats')}
               %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                 %use{"xlink:href" => "#broadcast-pin"}
               Ping Stats
           %li
-            %a.nav-link.text-white{href: "#"}
+            %a.nav-link{href: scheduled_events_path, class: selected_menu(controller_name, 'scheduled_events')}
               %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                 %use{"xlink:href" => "#send"}
               Scheduled Events
           %li
-            %a.nav-link.text-white{href: "#"}
+            %a.nav-link{href: '#', class: selected_menu(controller_name, 'custom_rules')}
               %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                 %use{"xlink:href" => "#file-text"}
               Custom Rules
           %li
-            %a.nav-link.text-white{href: "#"}
+            %a.nav-link{href: networks_path, class: selected_menu(controller_name, 'networks')}
               %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                 %use{"xlink:href" => "#bi-gear"}
-              Settings
+              Network profiles

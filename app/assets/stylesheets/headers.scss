@@ -14,7 +14,6 @@
   outline: 0;
 }
 
-
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -64,4 +63,9 @@
   text-align: center;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+}
+
+ul li a.nav-link:hover {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
 }

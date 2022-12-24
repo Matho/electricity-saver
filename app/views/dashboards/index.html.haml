@@ -15,40 +15,7 @@
   .col
     = render 'dashboards/event_logs'
   .col
-    .card{style: "width: 25rem;"}
-      .card-body
-        %h5.card-title Ping Stats
-        %table.table
-          %thead
-            %tr
-              %th{scope: "col"} IP
-              %th{scope: "col"} Response Time
-              %th{scope: "col"} Status
-          %tbody{class: 'table-group-divider'}
-            %tr{class: 'table-success'}
-              %td 10.0.3.10
-              %td 1 ms
-              %td
-                %i.bi.bi-check-circle
-                OK
-            %tr{class: 'table-danger'}
-              %td 10.0.3.11
-              %td 2 ms
-              %td
-                %i.bi.bi-exclamation-triangle
-                FAILED
-            %tr{class: 'table-success'}
-              %td 10.0.3.12
-              %td 2 ms
-              %td
-                %i.bi.bi-check-circle
-                OK
-            %tr{class: 'table-danger'}
-              %td 10.0.3.13
-              %td ?
-              %td
-                %i.bi.bi-exclamation-triangle
-                FAILED
+    = render 'dashboards/ping_stats'
   .col
     .card{style: "width: 25rem;"}
       .card-body

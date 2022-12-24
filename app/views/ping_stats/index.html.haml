@@ -1,0 +1,40 @@
+= render 'shared/breadcrumbs', title: 'Ping Stats'
+
+%h1 Ping Stats
+
+.row
+  .col.text-end
+    = paginate_helper(@ping_stats)
+
+#ping_stats
+  - if @ping_stats.count > 0
+    %table.table.table-striped
+      %thead
+        %tr
+          %th{scope: "col"} ID
+          %th{scope: "col"} IP Address
+          %th{scope: "col"} Response Time
+          %th{scope: "col"} Response Code
+          %th{scope: "col"} Response Status
+        %tbody{class: 'table-group-divider'}
+        - @ping_stats.each do |ping_stat|
+          -##TODO
+          %tr{class: "table-#{table_tr_css(ping_stat.response_status == 'OK')}"}
+            %td
+              = ping_stat.id
+            %td
+              = ping_stat.ip_addresss
+            %td
+              = ping_stat.response_time
+            %td
+              = ping_stat.response_code
+            %td
+              = ping_stat.response_status
+            %td
+              = link_to 'Delete', network_ping_stat_path(@current_network, ping_stat), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+
+.row
+  .col.text-end
+    = paginate_helper(@ping_stats)
+
+

@@ -8,7 +8,7 @@
               %use{"xlink:href" => "#bootstrap"}
           %ul.nav.col-12.col-lg-auto.my-2.justify-content-center.my-md-0.text-small
             %li
-              %a.nav-link{href: root_path, class: selected_menu(controller_name, 'dashboard')}
+              %a.nav-link{href: network_dashboards_path(@current_network), class: selected_menu(controller_name, 'dashboard')}
                 %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
                   %use{"xlink:href" => "#home"}
                 Home

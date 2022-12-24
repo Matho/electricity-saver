@@ -1,0 +1,20 @@
+.card{style: "width: 25rem;"}
+  .card-body
+    %h5.card-title
+      = link_to 'Uptime Stats', network_uptime_stats_path(@current_network)
+
+    %table.table
+      %thead
+        %tr
+          %th{scope: "col"} IP
+          %th{scope: "col"} Title
+          %th{scope: "col"} Status
+      %tbody{class: 'table-group-divider'}
+        - @uptime_stats.each do |uptime_stat|
+          %tr{class: "table-#{table_tr_css(uptime_stat.available)}"}
+            %td
+              = uptime_stat.endpoint_device.ip_address
+            %td
+              = uptime_stat.endpoint_device.title
+            %td
+              = table_td_up_or_down(uptime_stat)

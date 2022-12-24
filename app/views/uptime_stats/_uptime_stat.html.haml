@@ -1,0 +1,13 @@
+%div{id: "#{dom_id uptime_stat}"}
+  %p
+    %strong Endpoint device:
+    = uptime_stat.endpoint_device.title
+  %p
+    %strong Available:
+    = uptime_stat.available
+  %p
+    %strong Check date:
+    = uptime_stat.check_date
+  %p
+    %strong Network:
+    = uptime_stat.network.title

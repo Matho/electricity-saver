@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :event_logs
     resources :current_states
     resources :saved_energies
-    resources :uptime_stats
+    resources :uptime_stats, only: [:index, :show, :destroy]
     resources :smart_plug_devices
     resources :endpoint_devices
     resources :dashboards, only: [:index]

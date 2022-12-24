@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   resources :networks do
     resources :rules
     resources :scheduled_events

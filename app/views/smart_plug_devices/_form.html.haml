@@ -1,0 +1,28 @@
+= form_with model: [@current_network, smart_plug_device] do |form|
+  - if smart_plug_device.errors.any?
+    %div{style: "color: red"}
+      %h2
+        = pluralize(smart_plug_device.errors.count, "error")
+        prohibited this smart_plug_device from being saved:
+      %ul
+        - smart_plug_device.errors.each do |error|
+          %li= error.full_message
+  %div
+    = form.label :title, style: "display: block"
+    = form.text_field :title
+  %div
+    = form.label :description, style: "display: block"
+    = form.text_area :description
+  %div
+    = form.label :api_title, style: "display: block"
+    = form.text_field :api_title
+  %div
+    = form.label :current_state, style: "display: block"
+    = form.text_field :current_state
+  %div
+    = form.label :ip_address, style: "display: block"
+    = form.text_field :ip_address
+  %div
+    = form.hidden_field :network_id
+  %div
+    = form.submit

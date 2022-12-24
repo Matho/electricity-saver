@@ -1,0 +1,6 @@
+%h1 Editing smart plug device
+= render "form", smart_plug_device: @smart_plug_device
+%br
+%div
+  = link_to "Show this smart plug device", network_smart_plug_device_path(@current_network, @smart_plug_device)
+  = link_to "Back to smart plug device", network_smart_plug_devices_path(@current_network)

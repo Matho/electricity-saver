@@ -1,0 +1,6 @@
+= render @smart_plug_device
+
+%div
+  = link_to "Edit this smart plug device", edit_network_smart_plug_device_path(@current_network, @smart_plug_device)
+  = link_to "Back to smart plug devices", network_smart_plug_devices_path(@current_network)
+  = link_to 'Destroy this smart plug device', network_smart_plug_device_path(@current_network, @smart_plug_device), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}

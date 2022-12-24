@@ -1,6 +1,5 @@
 class EndpointDevicesController < ApplicationController
-  before_action :set_network, only: %i[ index new create show edit update destroy ]
-  before_action :redirect_to_choose_network, only: %i[ index ]
+  before_action :set_network
   before_action :set_endpoint_device, only: %i[ show edit update destroy ]
 
   def index

@@ -1,0 +1,5 @@
+%h1 New smart plug device
+= render "form", smart_plug_device: @smart_plug_device
+%br
+%div
+  = link_to "Back to smart plug devices", network_smart_plug_devices_path(@current_network)

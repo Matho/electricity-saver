@@ -1,0 +1,18 @@
+%h1 Choose network
+
+.row
+  .col
+    = link_to "New network", new_network_path
+
+.row
+  .col
+    .list-group.list-group-radio.d-grid.gap-2.border-0.w-auto
+      - @networks.each do |network|
+        %a{href: network_dashboards_path(network)}
+          .position-relative
+            %input.form-check-input.position-absolute.top-50.end-0.me-3.fs-5{name: "listGroupRadioGrid", type: "radio", value: "", id: "listGroupRadioGrid#{network.id}"}
+            %label.list-group-item.py-3.pe-5{for: "listGroupRadioGrid#{network.id}", style: 'border-radius: 0'}
+              %strong.fw-semibold
+                = network.title
+              %span.d-block.small.opacity-75
+                = network.description

@@ -1,110 +1,111 @@
-.container.mt-3
-  .row
-    .col
-      %p.text-center
-        = "#{@current_network.title} | Last updated at: #{Time.now}"
-  .row
-    .col
-      = render 'dashboards/uptime_stats'
-    .col
-      = render 'dashboards/saved_energy'
-    .col
-      .card{style: "width: 25rem;"}
-        .card-body
-          %h5.card-title Starlink Switch
-          .form-check.form-switch
-            %input#flexSwitchCheckDefault.form-check-input{role: "switch", type: "checkbox"}/
-            %label.form-check-label{for: "flexSwitchCheckDefault"} Starlink
-  .row.mt-5
-    .col
-      .card{style: "width: 25rem;"}
-        .card-body
-          %h5.card-title Event Log
-          %table.table
-            %thead
-              %tr
-                %th{scope: "col"} Date
-                %th{scope: "col"} Title
-            %tbody{class: 'table-group-divider'}
-              %tr
-                %td 23.12.2022
-                %td
-              %tr
-                %td 22.12.2022
-                %td 7 Wh
-              %tr
-                %td 21.12.2022
-                %td 0 Wh
-              %tr
-                %td 20.12.2022
-                %td 0 Wh
-    .col
-      .card{style: "width: 25rem;"}
-        .card-body
-          %h5.card-title Ping Stats
-          %table.table
-            %thead
-              %tr
-                %th{scope: "col"} IP
-                %th{scope: "col"} Response Time
-                %th{scope: "col"} Status
-            %tbody{class: 'table-group-divider'}
-              %tr{class: 'table-success'}
-                %td 10.0.3.10
-                %td 1 ms
-                %td
-                  %i.bi.bi-check-circle
-                  OK
-              %tr{class: 'table-danger'}
-                %td 10.0.3.11
-                %td 2 ms
-                %td
-                  %i.bi.bi-exclamation-triangle
-                  FAILED
-              %tr{class: 'table-success'}
-                %td 10.0.3.12
-                %td 2 ms
-                %td
-                  %i.bi.bi-check-circle
-                  OK
-              %tr{class: 'table-danger'}
-                %td 10.0.3.13
-                %td ?
-                %td
-                  %i.bi.bi-exclamation-triangle
-                  FAILED
-    .col
-      .card{style: "width: 25rem;"}
-        .card-body
-          %h5.card-title Scheduled Events
-          %table.table
-            %thead
-              %tr
-                %th{scope: "col"} Day
-                %th{scope: "col"} Device
-                %th{scope: "col"} Action
-            %tbody{class: 'table-group-divider'}
-              %tr{class: 'table-success'}
-                %td 23.12.2022 17:25:21
-                %td Starlink Plug
-                %td
-                  %i.bi.bi-wifi
-                  ON
-              %tr{class: 'table-danger'}
-                %td 23.12.2022 16:25:21
-                %td Starlink Plug
-                %td
-                  %i.bi.bi-wifi-off
-                  OFF
-              %tr{class: 'table-success'}
-                %td 23.12.2022 14:25:21
-                %td Starlink Plug
-                %td
-                  %i.bi.bi-wifi-off
-                  OFF
-              %tr{class: 'table-danger'}
-                %td 23.12.2022 13:25:21
-                %td Starlink Plug
-                %td
-                  %i.bi.bi-wifi
-                  ON
+= render 'shared/breadcrumbs', title: 'Dashboard'
+%h1 Dashboard
+.row
+  .col
+    %p.text-center
+      = "Last updated at: #{Time.now}"
+.row
+  .col
+    = render 'dashboards/uptime_stats'
+  .col
+    = render 'dashboards/saved_energy'
+  .col
+    .card{style: "width: 25rem;"}
+      .card-body
+        %h5.card-title Starlink Switch
+        .form-check.form-switch
+          %input#flexSwitchCheckDefault.form-check-input{role: "switch", type: "checkbox"}/
+          %label.form-check-label{for: "flexSwitchCheckDefault"} Starlink
+.row.mt-5
+  .col
+    .card{style: "width: 25rem;"}
+      .card-body
+        %h5.card-title Event Log
+        %table.table
+          %thead
+            %tr
+              %th{scope: "col"} Date
+              %th{scope: "col"} Title
+          %tbody{class: 'table-group-divider'}
+            %tr
+              %td 23.12.2022
+              %td
+            %tr
+              %td 22.12.2022
+              %td 7 Wh
+            %tr
+              %td 21.12.2022
+              %td 0 Wh
+            %tr
+              %td 20.12.2022
+              %td 0 Wh
+  .col
+    .card{style: "width: 25rem;"}
+      .card-body
+        %h5.card-title Ping Stats
+        %table.table
+          %thead
+            %tr
+              %th{scope: "col"} IP
+              %th{scope: "col"} Response Time
+              %th{scope: "col"} Status
+          %tbody{class: 'table-group-divider'}
+            %tr{class: 'table-success'}
+              %td 10.0.3.10
+              %td 1 ms
+              %td
+                %i.bi.bi-check-circle
+                OK
+            %tr{class: 'table-danger'}
+              %td 10.0.3.11
+              %td 2 ms
+              %td
+                %i.bi.bi-exclamation-triangle
+                FAILED
+            %tr{class: 'table-success'}
+              %td 10.0.3.12
+              %td 2 ms
+              %td
+                %i.bi.bi-check-circle
+                OK
+            %tr{class: 'table-danger'}
+              %td 10.0.3.13
+              %td ?
+              %td
+                %i.bi.bi-exclamation-triangle
+                FAILED
+  .col
+    .card{style: "width: 25rem;"}
+      .card-body
+        %h5.card-title Scheduled Events
+        %table.table
+          %thead
+            %tr
+              %th{scope: "col"} Day
+              %th{scope: "col"} Device
+              %th{scope: "col"} Action
+          %tbody{class: 'table-group-divider'}
+            %tr{class: 'table-success'}
+              %td 23.12.2022 17:25:21
+              %td Starlink Plug
+              %td
+                %i.bi.bi-wifi
+                ON
+            %tr{class: 'table-danger'}
+              %td 23.12.2022 16:25:21
+              %td Starlink Plug
+              %td
+                %i.bi.bi-wifi-off
+                OFF
+            %tr{class: 'table-success'}
+              %td 23.12.2022 14:25:21
+              %td Starlink Plug
+              %td
+                %i.bi.bi-wifi-off
+                OFF
+            %tr{class: 'table-danger'}
+              %td 23.12.2022 13:25:21
+              %td Starlink Plug
+              %td
+                %i.bi.bi-wifi
+                ON

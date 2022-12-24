@@ -14,5 +14,7 @@
 
     %main
       = render 'shared/header'
-      = yield
+      .container.mt-2
+        = render 'shared/flash'
+        = yield
       = render 'shared/footer'

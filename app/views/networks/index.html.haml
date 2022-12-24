@@ -1,0 +1,37 @@
+%h1 Networks
+
+.row
+  .col
+    = link_to "New network", new_network_path
+  .col.text-end
+    = paginate_helper(@networks)
+
+#networks
+  - if @networks.count > 0
+    %table.table.table-striped
+      %thead
+        %tr
+          %th{scope: "col"} ID
+          %th{scope: "col"} Title
+          %th{scope: "col"} Description
+          %th{scope: "col"} Active
+          %th{scope: "col"} Actions
+      %tbody
+        - @networks.each do |network|
+          %tr
+            %th{scope: "row"}
+              = network.id
+            %td
+              = network.title
+            %td
+              = network.description
+            %td
+              = network.active
+            %td
+              = link_to "Show", network_path(network)
+              = link_to "Edit", edit_network_path(network)
+              = link_to 'Delete', network_path(network), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+
+.row
+  .col.text-end
+    = paginate_helper(@networks)

@@ -2,3 +2,8 @@ ping_stat_job:
   cron: "*/5 * * * *"
   class: "PingStatJob"
   queue: default
+
+saved_energy_recompute_job:
+  cron: "5 1 * * *"
+  class: "SavedEnergyRecomputeJob"
+  queue: default

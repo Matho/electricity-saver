@@ -81,4 +81,5 @@ gem 'net-ping', git: 'https://github.com/Matho/net-ping.git'
 gem "sidekiq-cron"
 gem 'httparty'
 gem 'cronex'
+gem 'parse-cron'
 

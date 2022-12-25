@@ -2,6 +2,7 @@ module UptimeStatsHelper
   def table_tr_css(available)
     available ? 'success' : 'danger'
   end
+
   def table_td_up_or_down(uptime_stat)
     output = []
 

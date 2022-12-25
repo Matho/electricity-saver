@@ -23,31 +23,15 @@
         %table.table
           %thead
             %tr
-              %th{scope: "col"} Day
+              %th{scope: "col"} Date
               %th{scope: "col"} Device
               %th{scope: "col"} Action
           %tbody{class: 'table-group-divider'}
-            %tr{class: 'table-success'}
-              %td 23.12.2022 17:25:21
-              %td Starlink Plug
-              %td
-                %i.bi.bi-wifi
-                ON
-            %tr{class: 'table-danger'}
-              %td 23.12.2022 16:25:21
-              %td Starlink Plug
-              %td
-                %i.bi.bi-wifi-off
-                OFF
-            %tr{class: 'table-success'}
-              %td 23.12.2022 14:25:21
-              %td Starlink Plug
-              %td
-                %i.bi.bi-wifi-off
-                OFF
-            %tr{class: 'table-danger'}
-              %td 23.12.2022 13:25:21
-              %td Starlink Plug
-              %td
-                %i.bi.bi-wifi
-                ON
+            - ScheduledEventsService.new(@current_network).process.each do |datetimes_for_rule|
+              %tr
+                %td
+                  = datetimes_for_rule.second
+                %td
+                  = datetimes_for_rule.first.smart_plug_device.title
+                %td
+                  = table_td_on_or_off(datetimes_for_rule.first)

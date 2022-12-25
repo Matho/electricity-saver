@@ -18,7 +18,7 @@
     = form.text_field :api_title
   %div
     = form.label :current_state, style: "display: block"
-    = form.text_field :current_state
+    = form.select :current_state, options_for_select(SmartPlugDevice.current_states.map {|k, v| [k.humanize.capitalize, v]})
   %div
     = form.label :ip_address, style: "display: block"
     = form.text_field :ip_address

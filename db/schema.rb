@@ -106,11 +106,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_110033) do
     t.string "title", null: false
     t.text "description"
     t.string "api_title", null: false
-    t.string "current_state", null: false
     t.string "ip_address", null: false
     t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "current_state", default: "2", null: false
     t.index ["network_id"], name: "index_smart_plug_devices_on_network_id"
   end
 

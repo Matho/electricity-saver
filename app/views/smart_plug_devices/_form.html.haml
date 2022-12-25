@@ -23,6 +23,12 @@
     = form.label :ip_address, style: "display: block"
     = form.text_field :ip_address
   %div
+    = form.label :energy_price_for_kwh, style: "display: block"
+    = form.text_field :energy_price_for_kwh
+  %div
+    = form.label :avg_energy_consumption, style: "display: block"
+    = form.text_field :avg_energy_consumption
+  %div
     = form.hidden_field :network_id
   %div
     = form.submit

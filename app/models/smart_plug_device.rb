@@ -1,5 +1,6 @@
 class SmartPlugDevice < ApplicationRecord
   belongs_to :network
+  has_many :current_states
 
   validates :title, presence: true
   validates :api_title, presence: true

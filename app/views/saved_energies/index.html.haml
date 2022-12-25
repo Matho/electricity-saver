@@ -14,7 +14,11 @@
           %th{scope: "col"} ID
           %th{scope: "col"} Day
           %th{scope: "col"} Smart Plug Device
+          %th{scope: "col"} Powered ON hours
+          %th{scope: "col"} Powered OFF hours
           %th{scope: "col"} Savings (Wh)
+          %th{scope: "col"} Savings (EUR)
+          %th{scope: "col"} Energy price (per kWh)
       %tbody
         - @saved_energies.each do |saved_energy|
           %tr
@@ -24,8 +28,16 @@
               = saved_energy.day
             %td
               = saved_energy.smart_plug_device.title
+            %th
+              = saved_energy.powered_on_hours.round(2)
+            %th
+              = saved_energy.powered_off_hours.round(2)
             %td
-              = saved_energy.savings
+              = saved_energy.savings.round(4)
+            %th
+              = saved_energy.total_energy_price.round(4)
+            %th
+              = saved_energy.smart_plug_device.energy_price_for_kwh
             %td
               = link_to 'Delete', network_saved_energy_path(@current_network, saved_energy), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
 

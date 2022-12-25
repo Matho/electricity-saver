@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_25_124614) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_25_171648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +20,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_124614) do
     t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "period", default: 0, null: false
+    t.index ["created_at"], name: "index_current_states_on_created_at"
     t.index ["network_id"], name: "index_current_states_on_network_id"
+    t.index ["updated_at"], name: "index_current_states_on_updated_at"
   end
 
   create_table "endpoint_devices", force: :cascade do |t|
@@ -89,6 +92,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_124614) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "day", null: false
+    t.decimal "total_energy_price"
+    t.decimal "powered_on_hours"
+    t.decimal "powered_off_hours"
     t.index ["network_id"], name: "index_saved_energies_on_network_id"
   end
 
@@ -111,6 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_124614) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "current_state", default: "2", null: false
+    t.decimal "energy_price_for_kwh"
+    t.decimal "avg_energy_consumption"
     t.index ["network_id"], name: "index_smart_plug_devices_on_network_id"
   end
 

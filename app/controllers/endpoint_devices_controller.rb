@@ -56,6 +56,6 @@ class EndpointDevicesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def endpoint_device_params
-      params.require(:endpoint_device).permit(:title, :gps_position, :description, :ip_address, :contact_info, :network_id)
+      params.require(:endpoint_device).permit(:title, :gps_position, :description, :ip_address, :contact_info, :network_id, :active_monitoring)
     end
 end

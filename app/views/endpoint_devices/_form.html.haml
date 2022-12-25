@@ -14,6 +14,9 @@
     = form.label :ip_address, style: "display: block"
     = form.text_field :ip_address
   %div
+    = form.label :active_monitoring, style: "display: block"
+    = form.select :active_monitoring, [['Active', true], ['Inactive', false]]
+  %div
     = form.label :gps_position, style: "display: block"
     = form.text_field :gps_position
   %div

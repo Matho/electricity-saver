@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/Matho/net-ping.git
+  revision: 640079722bac198e332802a2e63e324a26595336
+  specs:
+    net-ping (2.0.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -276,6 +282,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari
+  net-ping!
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4)

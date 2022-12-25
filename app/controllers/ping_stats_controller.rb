@@ -22,6 +22,6 @@ class PingStatsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def ping_stat_params
-    params.require(:ping_stat).permit(:ip_addresss, :response_time, :response_code, :response_status)
+    params.require(:ping_stat).permit(:ip_address, :response_time, :response_code, :response_status)
   end
 end

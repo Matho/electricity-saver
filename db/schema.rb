@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_25_110033) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_25_124614) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_110033) do
   end
 
   create_table "ping_stats", force: :cascade do |t|
-    t.string "ip_addresss", null: false
+    t.string "ip_address", null: false
     t.integer "response_time"
     t.string "response_code"
     t.string "response_status", null: false

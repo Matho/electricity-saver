@@ -13,8 +13,7 @@
         %tr
           %th{scope: "col"} ID
           %th{scope: "col"} IP Address
-          %th{scope: "col"} Response Time
-          %th{scope: "col"} Response Code
+          %th{scope: "col"} Response Time (ms)
           %th{scope: "col"} Response Status
         %tbody{class: 'table-group-divider'}
         - @ping_stats.each do |ping_stat|
@@ -23,11 +22,9 @@
             %td
               = ping_stat.id
             %td
-              = ping_stat.ip_addresss
+              = ping_stat.ip_address
             %td
               = ping_stat.response_time
-            %td
-              = ping_stat.response_code
             %td
               = ping_stat.response_status
             %td

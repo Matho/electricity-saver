@@ -1,0 +1,35 @@
+= render 'shared/breadcrumbs', title: 'Smart Plug States'
+
+%h1 Smart Plug States
+
+.row
+  .col.text-end
+    = paginate_helper(@current_states)
+
+#current_states
+  - if @current_states.count > 0
+    %table.table.table-striped
+      %thead
+        %tr
+          %th{scope: "col"} ID
+          %th{scope: "col"} State
+          %th{scope: "col"} Smart Plug Device
+          %th{scope: "col"} Created at
+        %tbody{class: 'table-group-divider'}
+        - @current_states.each do |current_state|
+          %tr
+            %td
+              = current_state.id
+            %td
+              = current_state.state
+            %td
+              = current_state.smart_plug_device.title
+            %td
+              = current_state.created_at
+
+
+.row
+  .col.text-end
+    = paginate_helper(@current_states)
+
+

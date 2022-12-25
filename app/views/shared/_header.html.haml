@@ -3,9 +3,9 @@
     .px-3.py-2.text-bg-dark
       .container
         .d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-lg-start
-          %a.d-flex.align-items-center.my-2.my-lg-0.me-lg-auto.text-white.text-decoration-none{href: "/"}
-            %svg.bi.me-2{"aria-label" => "Bootstrap", height: "32", role: "img", width: "40"}
-              %use{"xlink:href" => "#bootstrap"}
+          -#%a.d-flex.align-items-center.my-2.my-lg-0.me-lg-auto.text-white.text-decoration-none{href: "/"}
+          -#  %svg.bi.me-2{"aria-label" => "Bootstrap", height: "32", role: "img", width: "40"}
+          -#    %use{"xlink:href" => "#bootstrap"}
           %ul.nav.col-12.col-lg-auto.my-2.justify-content-center.my-md-0.text-small
             %li
               %a.nav-link{href: network_dashboards_path(@current_network), class: selected_menu(controller_name, 'dashboard')}
@@ -18,9 +18,14 @@
                   %use{"xlink:href" => "#stopwatch"}
                 Uptime Stats
             %li
+              %a.nav-link{href: network_current_states_path(@current_network), class: selected_menu(controller_name, 'current_states')}
+                %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
+                  %use{"xlink:href" => "#bi-reception-4"}
+                Plug States
+            %li
               %a.nav-link{href: network_saved_energies_path(@current_network), class: selected_menu(controller_name, 'saved_energies')}
                 %svg.bi.d-block.mx-auto.mb-1{height: "24", width: "24"}
-                  %use{"xlink:href" => "#currency-exchange"}
+                  %use{"xlink:href" => "#bi-currency-euro"}
                 Saved Energy
             %li
               %a.nav-link{href: network_switch_lists_path(@current_network), class: selected_menu(controller_name, 'switch_lists')}

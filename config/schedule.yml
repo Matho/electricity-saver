@@ -1,0 +1,4 @@
+ping_stat_job:
+  cron: "*/5 * * * *"
+  class: "PingStatJob"
+  queue: default

@@ -78,4 +78,5 @@ gem 'bootstrap5-kaminari-views'
 gem 'devise'
 gem "sidekiq", "~> 6.5.8"
 gem 'net-ping', git: 'https://github.com/Matho/net-ping.git'
+gem "sidekiq-cron"
 

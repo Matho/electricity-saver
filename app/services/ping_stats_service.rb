@@ -22,6 +22,13 @@ class PingStatsService
                         response_status: success ? 'OK' : 'FAIL',
                         network_id: @network.id
                       })
+
+      UptimeStat.create!({
+                           endpoint_device_id: endpoint_device.id,
+                           available: success,
+                           check_date: Time.now,
+                           network_id: @network.id
+                         })
     end
   end
 end

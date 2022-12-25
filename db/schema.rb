@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_25_181234) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_25_184708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_181234) do
     t.datetime "updated_at", null: false
     t.string "cron_saturday"
     t.string "cron_sunday"
+    t.index ["action", "smart_plug_device_id"], name: "index_rules_on_action_and_smart_plug_device_id", unique: true
     t.index ["network_id"], name: "index_rules_on_network_id"
   end
 

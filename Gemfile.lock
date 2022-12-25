@@ -100,6 +100,9 @@ GEM
     concurrent-ruby (1.1.10)
     connection_pool (2.3.0)
     crass (1.0.6)
+    cronex (0.11.1)
+      tzinfo
+      unicode
     date (3.3.3)
     debug (1.7.1)
       irb (>= 1.5.0)
@@ -265,6 +268,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
+    unicode (0.4.4.4)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -292,6 +296,7 @@ DEPENDENCIES
   bootstrap (~> 5.2.3)
   bootstrap5-kaminari-views
   capybara
+  cronex
   debug
   devise
   haml

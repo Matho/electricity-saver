@@ -32,19 +32,19 @@
               = rule.smart_plug_device.title
             %td
               = rule.action
-            %td
+            %td{title: cron_description(rule.cron_monday) }
               = rule.cron_monday
-            %td
+            %td{title: cron_description(rule.cron_tuesday) }
               = rule.cron_tuesday
-            %td
+            %td{title: cron_description(rule.cron_wednesday) }
               = rule.cron_wednesday
-            %td
+            %td{title: cron_description(rule.cron_thursday) }
               = rule.cron_thursday
-            %td
+            %td{title: cron_description(rule.cron_friday) }
               = rule.cron_friday
-            %td
+            %td{title: cron_description(rule.cron_saturday) }
               = rule.cron_saturday
-            %td
+            %td{title: cron_description(rule.cron_sunday) }
               = rule.cron_sunday
             %td
               = link_to "Show", network_rule_path(@current_network, rule)

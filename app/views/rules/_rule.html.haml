@@ -11,15 +11,35 @@
   %p
     %strong Cron monday:
     = rule.cron_monday
+    %br
+    = cron_description(rule.cron_monday) if rule.cron_monday.presence
   %p
     %strong Cron tuesday:
     = rule.cron_tuesday
+    %br
+    = cron_description(rule.cron_tuesday) if rule.cron_tuesday.presence
   %p
     %strong Cron wednesday:
     = rule.cron_wednesday
+    %br
+    = cron_description(rule.cron_wednesday) if rule.cron_wednesday.presence
   %p
     %strong Cron thursday:
     = rule.cron_thursday
+    %br
+    = cron_description(rule.cron_thursday) if rule.cron_thursday.presence
   %p
     %strong Cron friday:
     = rule.cron_friday
+    %br
+    = cron_description(rule.cron_friday) if rule.cron_friday.presence
+  %p
+    %strong Cron saturday:
+    = rule.cron_saturday
+    %br
+    = cron_description(rule.cron_saturday) if rule.cron_saturday.presence
+  %p
+    %strong Cron sunday:
+    = rule.cron_sunday
+    %br
+    = cron_description(rule.cron_sunday) if rule.cron_sunday.presence

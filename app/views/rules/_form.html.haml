@@ -15,7 +15,7 @@
     = form.number_field :smart_plug_device_id
   %div
     = form.label :action, style: "display: block"
-    = form.text_field :action
+    = form.select :action, options_for_select(Rule.actions.map {|k, v| [k.humanize.capitalize, v]}), prompt: :select
   %div
     = form.label :cron_monday, style: "display: block"
     = form.text_field :cron_monday

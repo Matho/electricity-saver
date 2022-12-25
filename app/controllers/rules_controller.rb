@@ -54,6 +54,6 @@ class RulesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def rule_params
-    params.require(:rule).permit(:rule, :smart_plug_device_id, :action, :cron_monday, :cron_tuesday, :cron_wednesday, :cron_thursday, :cron_friday)
+    params.require(:rule).permit(:rule, :smart_plug_device_id, :action, :cron_monday, :cron_tuesday, :cron_wednesday, :cron_thursday, :cron_friday,  :cron_saturday,  :cron_sunday)
   end
 end

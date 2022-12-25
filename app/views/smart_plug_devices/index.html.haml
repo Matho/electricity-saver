@@ -18,7 +18,7 @@
           %th{scope: "col"} Description
           %th{scope: "col"} Api Title
           %th{scope: "col"} Current State
-          %th{scope: "col"} IP Address
+          %th{scope: "col"} API url
           %th{scope: "col"} Actions
       %tbody
         - @smart_plug_devices.each do |smart_plug_device|
@@ -34,7 +34,7 @@
             %td
               = smart_plug_device.current_state
             %td
-              = smart_plug_device.ip_address
+              = smart_plug_device.api_url
             %td
               = link_to "Show", network_smart_plug_device_path(@current_network, smart_plug_device)
               = link_to "Edit", edit_network_smart_plug_device_path(@current_network, smart_plug_device)

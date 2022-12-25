@@ -54,6 +54,6 @@ class SmartPlugDevicesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def smart_plug_device_params
-    params.require(:smart_plug_device).permit(:title, :description, :api_title, :current_state, :ip_address, :network_id, :energy_price_for_kwh, :avg_energy_consumption)
+    params.require(:smart_plug_device).permit(:title, :description, :api_title, :current_state, :api_url, :network_id, :energy_price_for_kwh, :avg_energy_consumption, :token)
   end
 end

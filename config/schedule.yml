@@ -1,6 +1,11 @@
 ping_stat_job:
-  cron: "*/5 * * * *"
+  cron: "* * * * *"
   class: "PingStatJob"
+  queue: default
+
+smart_plug_state_job:
+  cron: "* * * * *"
+  class: "SmartPlugStateJob"
   queue: default
 
 saved_energy_recompute_job:

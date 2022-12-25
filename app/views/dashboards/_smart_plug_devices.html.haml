@@ -3,7 +3,12 @@
     %h5.card-title
       = link_to 'Smart Plug Devices', network_smart_plug_devices_path(@current_network)
 
-    - @smart_plug_devices.each do |smart_plug_device|
-      .form-check.form-switch
-        %input#flexSwitchCheckDefault.form-check-input{role: "switch", type: "checkbox", disabled: true}
-        %label.form-check-label{for: "flexSwitchCheckDefault#{smart_plug_device.id}"}= smart_plug_device.title
+    -# - @smart_plug_devices.each do |smart_plug_device|
+    -#   .form-check.form-switch
+    -#     %input#flexSwitchCheckDefault.form-check-input{role: "switch", type: "checkbox", disabled: true}
+    -#     %label.form-check-label{for: "flexSwitchCheckDefault#{smart_plug_device.id}"}= smart_plug_device.title
+
+    .form-check.form-switch
+      %input#flexSwitchCheckDefault.form-check-input{role: "switch", type: "checkbox"}
+      %label.form-check-label{for: "flexSwitchCheckDefault"}
+        = "Ignore all rules"

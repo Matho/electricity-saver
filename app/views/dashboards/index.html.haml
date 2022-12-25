@@ -1,37 +1,38 @@
 = render 'shared/breadcrumbs', title: 'Dashboard'
 %h1 Dashboard
-.row
-  .col
-    %p.text-center
-      = "Last updated at: #{Time.now}"
-.row
-  .col
-    = render 'dashboards/uptime_stats'
-  .col
-    = render 'dashboards/saved_energy'
-  .col
-    = render 'dashboards/smart_plug_devices'
-.row.mt-5
-  .col
-    = render 'dashboards/event_logs'
-  .col
-    = render 'dashboards/ping_stats'
-  .col
-    .card{style: "width: 25rem;"}
-      .card-body
-        %h5.card-title Scheduled Events
-        %table.table
-          %thead
-            %tr
-              %th{scope: "col"} Date
-              %th{scope: "col"} Device
-              %th{scope: "col"} Action
-          %tbody{class: 'table-group-divider'}
-            - ScheduledEventsService.new(@current_network).process.each do |datetimes_for_rule|
+#dashboard
+  .row
+    .col
+      %p.text-center
+        = "Last updated at: #{Time.now}"
+  .row
+    .col
+      = render 'dashboards/uptime_stats'
+    .col
+      = render 'dashboards/saved_energy'
+    .col
+      = render 'dashboards/smart_plug_devices'
+  .row.mt-5
+    .col
+      = render 'dashboards/event_logs'
+    .col
+      = render 'dashboards/ping_stats'
+    .col
+      .card{style: "width: 25rem;"}
+        .card-body
+          %h5.card-title Scheduled Events
+          %table.table
+            %thead
               %tr
-                %td
-                  = datetimes_for_rule.second
-                %td
-                  = datetimes_for_rule.first.smart_plug_device.title
-                %td
-                  = table_td_on_or_off(datetimes_for_rule.first)
+                %th{scope: "col"} Date
+                %th{scope: "col"} Device
+                %th{scope: "col"} Action
+            %tbody{class: 'table-group-divider'}
+              - ScheduledEventsService.new(@current_network).process.each do |datetimes_for_rule|
+                %tr
+                  %td
+                    = datetimes_for_rule.second
+                  %td
+                    = datetimes_for_rule.first.smart_plug_device.title
+                  %td
+                    = table_td_on_or_off(datetimes_for_rule.first)

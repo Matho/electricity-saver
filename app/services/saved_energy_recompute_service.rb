@@ -32,7 +32,8 @@ class SavedEnergyRecomputeService
 
     hash_with_intervals = {
       'turned_off' => [],
-      'turned_on' => []
+      'turned_on' => [],
+      'unknown' => []
     }
 
     i = 1 * 2 # skip first, do backward processing

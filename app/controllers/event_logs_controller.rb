@@ -2,7 +2,7 @@ class EventLogsController < ApplicationController
   before_action :set_event_log, only: %i[ show destroy ]
 
   def index
-    @event_logs = @current_network.event_logs.includes(:endpoint_device).page(params[:page]).order('id desc')
+    @event_logs = @current_network.event_logs.includes(:event_loggable).page(params[:page]).order('id desc')
   end
 
   def destroy

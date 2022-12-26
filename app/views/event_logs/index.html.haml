@@ -14,7 +14,7 @@
           %th{scope: "col"} ID
           %th{scope: "col"} Event
           %th{scope: "col"} Event Date
-          %th{scope: "col"} Endpoint Device
+          %th{scope: "col"} Device
           %th{scope: "col"} Actions
         %tbody{class: 'table-group-divider'}
         - @event_logs.each do |event_log|
@@ -26,7 +26,7 @@
             %td
               = event_log.event_date
             %td
-              = event_log.endpoint_device.title
+              = event_log.event_loggable.title
             %td
               = link_to 'Delete', network_event_log_path(@current_network, event_log), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
 

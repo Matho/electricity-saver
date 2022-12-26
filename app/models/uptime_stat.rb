@@ -8,16 +8,15 @@ class UptimeStat < ApplicationRecord
 
   scope :last_sorted, -> { limit(5).order('id desc') }
 
-  after_commit :create_event_log, on: [:create, :update]
+  after_create :create_event_log
+  after_update :create_event_log, if: :available_previously_changed?
 
   private
 
   def create_event_log
-    return nil unless available_previously_changed?
-
     EventLog.create!({
                        event_date: Time.current,
-                       endpoint_device_id: self.endpoint_device_id,
+                       event_loggable: self.endpoint_device,
                        network_id: self.network_id,
                        status: self.available ? :turned_on : :turned_off
                      })

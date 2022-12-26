@@ -7,7 +7,7 @@
       %thead
         %tr
           %th{scope: "col"} IP
-          %th{scope: "col"} Response Time (ms)
+          %th{scope: "col"} Created at
           %th{scope: "col"} Status
       %tbody{class: 'table-group-divider'}
         - @ping_stats.each do |ping_stat|
@@ -17,6 +17,6 @@
               = ping_stat.ip_address
 
             %td
-              = "#{ping_stat.response_time }"
+              = ping_stat.created_at
             %td
               = table_td_ok_or_warn(ping_stat)

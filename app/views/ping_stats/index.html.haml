@@ -15,6 +15,7 @@
           %th{scope: "col"} IP Address
           %th{scope: "col"} Response Time (ms)
           %th{scope: "col"} Response Status
+          %th{scope: "col"} Created at
         %tbody{class: 'table-group-divider'}
         - @ping_stats.each do |ping_stat|
           -##TODO
@@ -27,6 +28,8 @@
               = ping_stat.response_time
             %td
               = ping_stat.response_status
+            %td
+              = ping_stat.created_at
             %td
               = link_to 'Delete', network_ping_stat_path(@current_network, ping_stat), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
 

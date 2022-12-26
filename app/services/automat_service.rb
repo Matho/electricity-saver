@@ -2,6 +2,7 @@ class AutomatService
 
   def initialize(network)
     @network = network
+    @smart_plug_device = @network.smart_plug_devices.first # TODO
   end
 
   def process
@@ -27,16 +28,14 @@ class AutomatService
 
   def could_be_turned_on?(scheduled_event, devices_states)
     if devices_states.map(&:available).include?(true)
-      # TODO execute api request to turn on the smart plug
-      p "turning on"
+      SmartPlugOnJob.perform_async(smart_plug_device_id: @smart_plug_device)
       scheduled_event.update(status: :finished)
     end
   end
 
   def could_be_turned_off?(scheduled_event, devices_states)
     if devices_states.map(&:available).uniq == false # if all devices are off
-      # TODO execute api request to turn OFF the smart plug
-      p "turning off"
+      SmartPlugOffJob.perform_async(smart_plug_device_id: @smart_plug_device)
       scheduled_event.update(status: :finished)
     else
       reason = 'Device states: '

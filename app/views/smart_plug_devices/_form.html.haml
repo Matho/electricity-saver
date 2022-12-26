@@ -20,8 +20,14 @@
     = form.label :current_state, style: "display: block"
     = form.select :current_state, options_for_select(SmartPlugDevice.current_states.map {|k, v| [k.humanize.capitalize, v]})
   %div
-    = form.label :api_url, style: "display: block"
-    = form.text_field :api_url
+    = form.label :api_status_url, style: "display: block"
+    = form.text_field :api_status_url
+  %div
+    = form.label :api_turn_on_url, style: "display: block"
+    = form.text_field :api_turn_on_url
+  %div
+    = form.label :api_turn_off_url, style: "display: block"
+    = form.text_field :api_turn_off_url
   %div
     = form.label :energy_price_for_kwh, style: "display: block"
     = form.text_field :energy_price_for_kwh

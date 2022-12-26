@@ -25,7 +25,7 @@ class SmartPlugStatesService
 
   def detect(smart_plug_device)
     begin
-      response = HTTParty.get(smart_plug_device.api_url,
+      response = HTTParty.get(smart_plug_device.api_status_url,
                               headers: {
                                 "content-type" => 'application/json',
                                 "Authorization" => "Bearer #{smart_plug_device.token}"

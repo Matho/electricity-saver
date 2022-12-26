@@ -6,7 +6,7 @@ class SmartPlugDevice < ApplicationRecord
   validates :title, presence: true
   validates :api_title, presence: true
   validates :current_state, presence: true
-  validates :api_url, presence: true
+  validates :api_status_url, presence: true
   validates :network_id, presence: true
 
   enum :current_state, { turned_on: '0', turned_off: '1', unknown: '2' }

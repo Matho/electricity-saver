@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_25_184708) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_26_114406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -112,7 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_184708) do
     t.string "title", null: false
     t.text "description"
     t.string "api_title", null: false
-    t.string "api_url", null: false
+    t.string "api_status_url", null: false
     t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -120,6 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_184708) do
     t.decimal "energy_price_for_kwh"
     t.decimal "avg_energy_consumption"
     t.text "token"
+    t.string "api_turn_on_url"
+    t.string "api_turn_off_url"
     t.index ["network_id"], name: "index_smart_plug_devices_on_network_id"
   end
 

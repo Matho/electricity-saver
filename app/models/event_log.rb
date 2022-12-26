@@ -10,4 +10,28 @@ class EventLog < ApplicationRecord
   enum :status, { turned_on: 0, turned_off: 1, unknown: 2 }
 
   scope :last_sorted, -> { limit(5).order('id desc') }
+
+  after_create :create_scheduled_event
+
+  private
+  def create_scheduled_event
+    # TODO we are taking first smart plug
+    smart_plug_device = self.network.smart_plug_devices.first
+
+    return nil unless smart_plug_device
+    return nil if self.status == 'unknown'
+
+    event_date = Time.current
+
+    if self.status == 'turned_off'
+      event_date = event_date + ScheduledEvent::TIMEOUT_FOR_OFF_STATE
+    end
+
+    ScheduledEvent.create!({
+                             event_date: event_date,
+                             smart_plug_device_id: smart_plug_device.id,
+                             action: self.status,
+                             network_id: self.network.id
+                           })
+  end
 end

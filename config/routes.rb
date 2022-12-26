@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :networks do
     resources :rules
-    resources :scheduled_events
+    resources :scheduled_events, only: [:index, :destroy]
     resources :ping_stats, only: [:index, :destroy]
     resources :event_logs
     resources :current_states

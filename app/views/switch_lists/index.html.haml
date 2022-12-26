@@ -1,14 +1,60 @@
 = render 'shared/breadcrumbs', title: 'Switch Lists'
 
-%h1 Switch Lists
+%h1 ON/OFF Automat
 
 #switch_lists
-  -# - @smart_plug_devices.each do |smart_plug_device|
+  .row
+    .col
+      = render 'dashboards/uptime_stats'
+    .col
+      = render 'dashboards/event_logs'
+    .col
+      = render 'dashboards/scheduled_cron'
+
+  .row
+    .col.text-end
+      = paginate_helper(@scheduled_events)
+
+  .row
+    .col
+      %h1 Scheduled Events
+
+      - if @scheduled_events.count > 0
+        %table.table.table-striped
+          %thead
+            %tr
+              %th{scope: "col"} ID
+              %th{scope: "col"} Event Date
+              %th{scope: "col"} Smart Plug Device
+              %th{scope: "col"} Action
+              %th{scope: "col"} Status
+              %th{scope: "col"} Actions
+          %tbody
+            - @scheduled_events.each do |scheduled_event|
+              %tr
+                %th{scope: "row"}
+                  = scheduled_event.id
+                %td
+                  = scheduled_event.event_date
+                %td
+                  = scheduled_event.smart_plug_device.title
+                %td
+                  = scheduled_event.action
+                %td
+                %td
+                  = link_to 'Delete', network_scheduled_event_path(@current_network, scheduled_event), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+
+  .row
+    .col.text-end
+      = paginate_helper(@scheduled_events)
+
+  -# - @scheduled_events.each do |scheduled_event|
   -#   .form-check.form-switch
   -#     %input#flexSwitchCheckDefault.form-check-input{role: "switch", type: "checkbox", disabled: true}
-  -#     %label.form-check-label{for: "flexSwitchCheckDefault#{smart_plug_device.id}"}= smart_plug_device.title
+  -#     %label.form-check-label{for: "flexSwitchCheckDefault#{scheduled_event.id}"}= scheduled_event.title
 
-  .form-check.form-switch
-    %input#flexSwitchCheckDefault.form-check-input{role: "switch", type: "checkbox"}
-    %label.form-check-label{for: "flexSwitchCheckDefault"}
-      = "Ignore all rules"
+  -#.form-check.form-switch
+  -#  %input#flexSwitchCheckDefault.form-check-input{role: "switch", type: "checkbox"}
+  -#  %label.form-check-label{for: "flexSwitchCheckDefault"}
+  -#    = "Ignore all rules"
+

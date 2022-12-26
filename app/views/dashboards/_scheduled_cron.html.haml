@@ -1,0 +1,18 @@
+.card{style: "width: 25rem;"}
+  .card-body
+    %h5.card-title Scheduled CRON for today
+    %table.table
+      %thead
+        %tr
+          %th{scope: "col"} Date
+          %th{scope: "col"} Device
+          %th{scope: "col"} Action
+      %tbody{class: 'table-group-divider'}
+        - ScheduledEventsService.new(@current_network).process.each do |datetimes_for_rule|
+          %tr
+            %td
+              = datetimes_for_rule.second
+            %td
+              = datetimes_for_rule.first.smart_plug_device.title
+            %td
+              = table_td_on_or_off(datetimes_for_rule.first)

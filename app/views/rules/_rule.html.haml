@@ -1,45 +1,77 @@
+%h1
+  = "Rule ##{rule.id}"
+
 %div{id: "#{dom_id rule}"}
-  %p
-    %strong Rule:
-    = rule.rule
-  %p
-    %strong Smart plug device:
-    = rule.smart_plug_device_id
-  %p
-    %strong Action:
-    = rule.action
-  %p
-    %strong Cron monday:
-    = rule.cron_monday
-    %br
-    = cron_description(rule.cron_monday) if rule.cron_monday.presence
-  %p
-    %strong Cron tuesday:
-    = rule.cron_tuesday
-    %br
-    = cron_description(rule.cron_tuesday) if rule.cron_tuesday.presence
-  %p
-    %strong Cron wednesday:
-    = rule.cron_wednesday
-    %br
-    = cron_description(rule.cron_wednesday) if rule.cron_wednesday.presence
-  %p
-    %strong Cron thursday:
-    = rule.cron_thursday
-    %br
-    = cron_description(rule.cron_thursday) if rule.cron_thursday.presence
-  %p
-    %strong Cron friday:
-    = rule.cron_friday
-    %br
-    = cron_description(rule.cron_friday) if rule.cron_friday.presence
-  %p
-    %strong Cron saturday:
-    = rule.cron_saturday
-    %br
-    = cron_description(rule.cron_saturday) if rule.cron_saturday.presence
-  %p
-    %strong Cron sunday:
-    = rule.cron_sunday
-    %br
-    = cron_description(rule.cron_sunday) if rule.cron_sunday.presence
+  %table.table
+    %tbody
+      %tr
+        %td.text-end
+          %strong Title:
+        %td
+          = rule.rule
+      %tr
+        %td.text-end
+          %strong Smart Plug Device:
+        %td
+          = rule.smart_plug_device.title
+      %tr
+        %td.text-end
+          %strong Action:
+        %td
+          = rule.action
+      %tr
+        %td.text-end
+          %strong Cron Monday:
+        %td
+          = rule.cron_monday
+          %br
+          %i
+            = cron_description(rule.cron_monday) if rule.cron_monday.presence
+      %tr
+        %td.text-end
+          %strong Cron Tuesday:
+        %td
+          = rule.cron_tuesday
+          %br
+          %i
+            = cron_description(rule.cron_tuesday) if rule.cron_tuesday.presence
+      %tr
+        %td.text-end
+          %strong Cron Wednesday:
+        %td
+          = rule.cron_wednesday
+          %br
+          %i
+            = cron_description(rule.cron_wednesday) if rule.cron_wednesday.presence
+      %tr
+        %td.text-end
+          %strong Cron Thursday:
+        %td
+          = rule.cron_thursday
+          %br
+          %i
+            = cron_description(rule.cron_thursday) if rule.cron_thursday.presence
+      %tr
+        %td.text-end
+          %strong Cron Friday:
+        %td
+          = rule.cron_friday
+          %br
+          %i
+            = cron_description(rule.cron_friday) if rule.cron_friday.presence
+      %tr
+        %td.text-end
+          %strong Cron Saturday:
+        %td
+          = rule.cron_saturday
+          %br
+          %i
+            = cron_description(rule.cron_saturday) if rule.cron_saturday.presence
+      %tr
+        %td.text-end
+          %strong Cron Sunday:
+        %td
+          = rule.cron_sunday
+          %br
+          %i
+            = cron_description(rule.cron_sunday) if rule.cron_sunday.presence

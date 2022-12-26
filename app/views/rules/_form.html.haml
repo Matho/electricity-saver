@@ -1,46 +1,21 @@
-= form_with model: [@current_network, rule] do |form|
-  - if rule.errors.any?
-    %div{style: "color: red"}
-      %h2
-        = pluralize(rule.errors.count, "error")
-        prohibited this rule from being saved:
-      %ul
-        - rule.errors.each do |error|
-          %li= error.full_message
-  %div
-    = form.label :rule, style: "display: block"
-    = form.text_field :rule
-  %div
-    = form.label :smart_plug_device_id, style: "display: block"
-    = form.number_field :smart_plug_device_id
-  %div
-    = form.label :action, style: "display: block"
-    = form.select :action, options_for_select(Rule.actions.map {|k, v| [k.humanize.capitalize, v]}), prompt: :select
-  %div
-    = form.label :cron_monday, style: "display: block"
-    = form.text_field :cron_monday
-  %div
-    = form.label :cron_tuesday, style: "display: block"
-    = form.text_field :cron_tuesday
-  %div
-    = form.label :cron_wednesday, style: "display: block"
-    = form.text_field :cron_wednesday
-  %div
-    = form.label :cron_thursday, style: "display: block"
-    = form.text_field :cron_thursday
-  %div
-    = form.label :cron_friday, style: "display: block"
-    = form.text_field :cron_friday
-  %div
-    = form.label :cron_saturday, style: "display: block"
-    = form.text_field :cron_saturday
+= bootstrap_form_for([@current_network, rule], layout: :horizontal, label_errors: true) do |f|
+  = f.text_field :rule, help: "Name of your rule"
 
-  %div
-    = form.label :cron_sunday, style: "display: block"
-    = form.text_field :cron_sunday
+  = f.collection_select :smart_plug_device_id, @current_network.smart_plug_devices, :id, :title, include_blank: "Select a value", help: "Smart Plug Device for which the rule is associated"
 
-  %div
-    = form.hidden_field :network_id
+  = f.form_group :action, label: { text: "Action" }, help: "" do
+    = f.radio_button :action, '1', label: "Turn off", checked: f.object.action == 'turn_off'
+    = f.radio_button :action, '0', label: "Turn on", checked: f.object.action == 'turn_on'
 
-  %div
-    = form.submit
+  = f.text_field :cron_monday
+  = f.text_field :cron_tuesday
+  = f.text_field :cron_wednesday
+  = f.text_field :cron_thursday
+  = f.text_field :cron_friday
+  = f.text_field :cron_saturday
+  = f.text_field :cron_sunday
+
+  = f.hidden_field :network_id
+
+  = f.form_group do
+    =  f.submit

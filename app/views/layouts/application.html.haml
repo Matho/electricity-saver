@@ -16,5 +16,6 @@
       = render 'shared/header'
       .container.mt-2
         = render 'shared/flash'
+        = render 'shared/breadcrumbs', title: params[:controller].humanize if @current_network
         = yield
       = render 'shared/footer'

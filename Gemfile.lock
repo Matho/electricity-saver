@@ -87,6 +87,9 @@ GEM
     bootstrap5-kaminari-views (0.0.1)
       kaminari (>= 0.13)
       rails (>= 3.1)
+    bootstrap_form (5.1.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     builder (3.2.4)
     capybara (3.38.0)
       addressable
@@ -296,6 +299,7 @@ DEPENDENCIES
   bootsnap
   bootstrap (~> 5.2.3)
   bootstrap5-kaminari-views
+  bootstrap_form (~> 5.1)
   capybara
   cronex
   debug

@@ -82,4 +82,4 @@ gem "sidekiq-cron"
 gem 'httparty'
 gem 'cronex'
 gem 'parse-cron'
-
+gem "bootstrap_form", "~> 5.1"

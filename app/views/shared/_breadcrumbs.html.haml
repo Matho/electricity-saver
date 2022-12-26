@@ -4,6 +4,6 @@
       %a{href: "/"} Home
     %li.breadcrumb-item
       %a{href: network_path(@current_network)}
-        = @current_network.title
+        = @current_network&.title
     %li.breadcrumb-item.active{"aria-current" => "page"}
       = title

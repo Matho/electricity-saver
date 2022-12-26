@@ -1,22 +1,41 @@
+%h1
+  = "Endpoint device ##{endpoint_device.id}"
+
 %div{id: "#{dom_id endpoint_device}"}
-  %p
-    %strong Title:
-    = endpoint_device.title
-  %p
-    %strong Active monitoring:
-    = endpoint_device.active_monitoring
-  %p
-    %strong Gps position:
-    = endpoint_device.gps_position
-  %p
-    %strong Description:
-    = endpoint_device.description
-  %p
-    %strong Ip address:
-    = endpoint_device.ip_address
-  %p
-    %strong Contact info:
-    = endpoint_device.contact_info
-  %p
-    %strong Network:
-    = endpoint_device.network.title
+  %table.table
+    %tbody
+      %tr
+        %td.text-end
+          %strong Title:
+        %td
+          = endpoint_device.title
+      %tr
+        %td.text-end
+          %strong Ip address:
+        %td
+          = endpoint_device.ip_address
+      %tr
+        %td.text-end
+          %strong Active monitoring:
+        %td
+          = endpoint_device.active_monitoring
+      %tr
+        %td.text-end
+          %strong Gps position:
+        %td
+          = endpoint_device.gps_position
+      %tr
+        %td.text-end
+          %strong Description:
+        %td
+          = endpoint_device.description
+      %tr
+        %td.text-end
+          %strong Contact info:
+        %td
+          = endpoint_device.contact_info
+      %tr
+        %td.text-end
+          %strong Network:
+        %td
+          = endpoint_device.network.title

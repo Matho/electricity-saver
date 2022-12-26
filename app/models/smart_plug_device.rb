@@ -10,5 +10,6 @@ class SmartPlugDevice < ApplicationRecord
   validates :api_status_url, presence: true
   validates :network_id, presence: true
 
+  #  TODO only 1
   enum :current_state, { turned_on: '0', turned_off: '1', unknown: '2' }
 end

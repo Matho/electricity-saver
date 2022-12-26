@@ -5,7 +5,7 @@ class AutomatService
   end
 
   def process
-    @network.scheduled_events.where(status: :scheduled).each do |scheduled_event|
+    @network.scheduled_events.where(status: :scheduled).order('event_date ASC').each do |scheduled_event|
       compute(scheduled_event)
     end
   end

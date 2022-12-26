@@ -13,6 +13,11 @@ smart_plug_state_job:
   class: "SmartPlugStateJob"
   queue: default
 
+schedule_cron_events_job:
+  cron: "* * * * *"
+  class: "ScheduleCronEventsJob"
+  queue: default
+
 saved_energy_recompute_job:
   cron: "5 1 * * *"
   class: "SavedEnergyRecomputeJob"

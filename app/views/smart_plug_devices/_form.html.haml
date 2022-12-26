@@ -1,46 +1,26 @@
-= form_with model: [@current_network, smart_plug_device] do |form|
-  - if smart_plug_device.errors.any?
-    %div{style: "color: red"}
-      %h2
-        = pluralize(smart_plug_device.errors.count, "error")
-        prohibited this smart_plug_device from being saved:
-      %ul
-        - smart_plug_device.errors.each do |error|
-          %li= error.full_message
-  %div
-    = form.label :title, style: "display: block"
-    = form.text_field :title
-  %div
-    = form.label :description, style: "display: block"
-    = form.text_area :description
-  %div
-    = form.label :api_title, style: "display: block"
-    = form.text_field :api_title
-  %div
-    = form.label :current_state, style: "display: block"
-    = form.select :current_state, options_for_select(SmartPlugDevice.current_states.map {|k, v| [k.humanize.capitalize, v]})
-  %div
-    = form.label :api_status_url, style: "display: block"
-    = form.text_field :api_status_url
-  %div
-    = form.label :api_turn_on_url, style: "display: block"
-    = form.text_field :api_turn_on_url
-  %div
-    = form.label :api_turn_off_url, style: "display: block"
-    = form.text_field :api_turn_off_url
-  %div
-    = form.label :energy_price_for_kwh, style: "display: block"
-    = form.text_field :energy_price_for_kwh
-  %div
-    = form.label :avg_energy_consumption, style: "display: block"
-    = form.text_field :avg_energy_consumption
-  %div
-    = form.label :token, style: "display: block"
-    = form.text_field :token
-  %div
-    = form.label :off_timeout, style: "display: block"
-    = form.text_field :off_timeout
-  %div
-    = form.hidden_field :network_id
-  %div
-    = form.submit
+= bootstrap_form_for([@current_network, smart_plug_device], layout: :horizontal, label_errors: true) do |f|
+  = f.text_field :title, help: "Name of your smart plug device"
+
+  = f.text_field :api_title, help: "Name of registered plug in Home Assistant, eg: switch.smart_zasuvka_1090"
+
+  = f.text_field :api_status_url, help: "Absolute url for your Home Assistant REST API for status of your smart plug"
+
+  = f.text_field :api_turn_on_url, help: "Absolute url for your Home Assistant REST API for turn on your smart plug"
+
+  = f.text_field :api_turn_off_url, help: "Absolute url for your Home Assistant REST API for turn off your smart plug"
+
+  = f.text_field :energy_price_for_kwh, help: "Energy price for kWh of electricity at destination of your smart plug", append: ['€', 'kWh'], control_col: "col-sm-2"
+
+  = f.text_field :avg_energy_consumption, help: "Average energy consumption of device plugged in the smart plug", append: ['Wh'], control_col: "col-sm-2"
+
+  = f.text_field :token, help: "Secret token for API conection for your Home Assistant instance"
+
+  = f.text_field :off_timeout, help: "Time between successfull turn off request of the smart plug", control_col: "col-sm-2"
+
+  = f.text_area :description, help: "Optional description of smart plug device"
+
+
+  = f.hidden_field :network_id
+
+  = f.form_group do
+    =  f.submit

@@ -2,7 +2,7 @@
 
 .row
   .col
-    = link_to "New Smart Plug device", new_network_smart_plug_device_path(@current_network)
+    = link_to "New Smart Plug device", new_network_smart_plug_device_path(@current_network) if @current_network.smart_plug_devices.count.zero?
   .col.text-end
     = paginate_helper(@smart_plug_devices)
 

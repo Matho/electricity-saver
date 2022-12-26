@@ -1,40 +1,61 @@
-%div{id: "#{dom_id smart_plug_device}"}
-  %p
-    %strong Title:
-    = smart_plug_device.title
-  %p
-    %strong Description:
-    = smart_plug_device.description
-  %p
-    %strong Api title:
-    = smart_plug_device.api_title
-  %p
-    %strong Current state:
-    = smart_plug_device.current_state
-  %p
-    %strong API status url:
-    = smart_plug_device.api_status_url
-  %p
-    %strong API turn on  url:
-    = smart_plug_device.api_turn_on_url
-  %p
-    %strong API turn off url:
-    = smart_plug_device.api_turn_off_url
-  %p
-    %strong Network:
-    = smart_plug_device.network.title
-  %p
-    %strong Energy Price kWh:
-    = smart_plug_device.energy_price_for_kwh
-  %p
-    %strong AVG Energy Consumption:
-    = smart_plug_device.avg_energy_consumption
-  %p
-    %strong API token:
-    = smart_plug_device.token
-  %p
-    %strong OFF timeout:
-    = smart_plug_device.off_timeout
-  %p
-    %strong Updated At:
-    = smart_plug_device.updated_at
+%h1
+  = "Smart Plug Device ##{smart_plug_device.id}"
+
+%div
+  %table.table
+    %tbody
+      %tr
+        %td.text-end
+          %strong Title:
+        %td
+          = smart_plug_device.title
+      %tr
+        %td.text-end
+          %strong Api Title:
+        %td
+          = smart_plug_device.api_title
+      %tr
+        %td.text-end
+          %strong Api Status Url:
+        %td
+          = smart_plug_device.api_status_url
+      %tr
+        %td.text-end
+          %strong Api Turn On Url:
+        %td
+          = smart_plug_device.api_turn_on_url
+      %tr
+        %td.text-end
+          %strong Api Turn Off Url:
+        %td
+          = smart_plug_device.api_turn_off_url
+      %tr
+        %td.text-end
+          %strong Energy Price For kWh
+        %td
+          = smart_plug_device.energy_price_for_kwh
+      %tr
+        %td.text-end
+          %strong AVG Energy Consumption (Wh)
+        %td
+          = smart_plug_device.avg_energy_consumption
+      %tr
+        %td.text-end
+          %strong Token:
+        %td
+          = '[FILTERED]'
+      %tr
+        %td.text-end
+          %strong OFF Timeout:
+        %td
+          = smart_plug_device.off_timeout
+      %tr
+        %td.text-end
+          %strong Description:
+        %td
+          = smart_plug_device.description
+      %tr
+        %td.text-end
+          %strong Network:
+        %td
+          = smart_plug_device.network.title

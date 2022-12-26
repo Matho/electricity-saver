@@ -31,7 +31,7 @@
               %th{scope: "col"} Actions
           %tbody
             - @scheduled_events.each do |scheduled_event|
-              %tr
+              %tr{class: "table-#{row_highlight(scheduled_event.status)}"}
                 %th{scope: "row"}
                   = scheduled_event.id
                 %td
@@ -41,6 +41,8 @@
                 %td
                   = scheduled_event.action
                 %td
+                  %span{'title' =>  scheduled_event.reason}
+                    = scheduled_event.status
                 %td
                   = link_to 'Delete', network_scheduled_event_path(@current_network, scheduled_event), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
 

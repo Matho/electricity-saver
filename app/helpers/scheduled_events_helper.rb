@@ -1,4 +1,14 @@
 module ScheduledEventsHelper
+
+  def row_highlight(state)
+    case state
+    when 'finished'
+      'success'
+    when 'failed'
+      'danger'
+    end
+  end
+
   def table_td_on_or_off(rule)
     output = []
 

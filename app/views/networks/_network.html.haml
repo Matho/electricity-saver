@@ -1,10 +1,21 @@
+%h1
+  = "Network ##{network.id}"
+
 %div{id: "#{dom_id network}"}
-  %p
-    %strong Title:
-    = network.title
-  %p
-    %strong Description:
-    = network.description
-  %p
-    %strong Active:
-    = network.active
+  %table.table
+    %tbody
+      %tr
+        %td.text-end
+          %strong Title:
+        %td
+          = network.title
+      %tr
+        %td.text-end
+          %strong Description:
+        %td
+          = network.description
+      %tr
+        %td.text-end
+          %strong Active:
+        %td
+          = network.active

@@ -10,4 +10,5 @@ class Network < ApplicationRecord
   has_many :uptime_stats
 
   validates :title, presence: true
+  validates :active, inclusion: { in: [ true, false ] }
 end

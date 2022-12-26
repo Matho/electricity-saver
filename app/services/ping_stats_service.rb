@@ -23,12 +23,14 @@ class PingStatsService
                         network_id: @network.id
                       })
 
-      UptimeStat.create!({
-                           endpoint_device_id: endpoint_device.id,
+      uptime_stat = UptimeStat.find_or_initialize_by({ endpoint_device_id: endpoint_device.id })
+
+      uptime_stat.assign_attributes({
                            available: success,
                            check_date: Time.now,
                            network_id: @network.id
                          })
+      uptime_stat.save!
     end
   end
 end

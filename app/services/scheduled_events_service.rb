@@ -7,7 +7,7 @@ class ScheduledEventsService
   def process
     datetimes_for_rules = []
 
-    @network.rules.each do |rule|
+    @network.rules.each do |rule| # TODO here is bug, do recommendation only for next day
       crons = [
         rule.cron_monday,
         rule.cron_tuesday,

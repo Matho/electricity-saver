@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_26_120008) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_26_135236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -124,6 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_120008) do
     t.text "token"
     t.string "api_turn_on_url"
     t.string "api_turn_off_url"
+    t.integer "off_timeout", default: 5, null: false
     t.index ["network_id"], name: "index_smart_plug_devices_on_network_id"
   end
 

@@ -11,6 +11,7 @@ class SmartPlugStatesService
 
       smart_plug_device.update!(current_state: state)
 
+      # we want to save only changes, not every request change
       next if CurrentState.last.state == state.to_s
 
       CurrentState.create!({

@@ -3,6 +3,11 @@ ping_stat_job:
   class: "PingStatJob"
   queue: default
 
+automat_job:
+  cron: "* * * * *"
+  class: "AutomatJob"
+  queue: default
+
 smart_plug_state_job:
   cron: "* * * * *"
   class: "SmartPlugStateJob"

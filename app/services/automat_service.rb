@@ -1,4 +1,4 @@
-class AutomatService #TODO create job scheduled by cron every minute
+class AutomatService
 
   def initialize(network)
     @network = network

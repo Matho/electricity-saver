@@ -29,7 +29,7 @@
               %th{scope: "col"} Action
               %th{scope: "col"} Status
               %th{scope: "col"} Actions
-          %tbody
+          %tbody{class: 'table-group-divider'}
             - @scheduled_events.each do |scheduled_event|
               %tr{class: "table-#{row_highlight(scheduled_event.status)}"}
                 %th{scope: "row"}

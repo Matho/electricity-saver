@@ -6,5 +6,6 @@ class DashboardsController < ApplicationController
     @saved_energies = @current_network.saved_energies.includes(:smart_plug_device).last_sorted
     @event_logs = @current_network.event_logs.includes(:event_loggable).last_sorted
     @ping_stats = @current_network.ping_stats.last_sorted
+    @scheduled_events = @current_network.scheduled_events.includes(:smart_plug_device).limit(5).order(event_date: :desc)
   end
 end

@@ -14,6 +14,9 @@ class AutomatService
   private
 
   def compute(scheduled_event)
+    # if event is past, do not process it
+    return scheduled_event.update(status: :skipped) if Time.current > scheduled_event.event_date
+
     endpoint_devices = @network.endpoint_devices.with_active_monitoring
 
     devices_states = @network.uptime_stats.where(endpoint_device_id: endpoint_devices)

@@ -1,0 +1,58 @@
+version: "3.0"
+
+services:
+  electricity_saver_postgres:
+    image: 'postgres:15-alpine'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+    ports:
+      - '5433:5432'
+
+  electricity_saver_redis:
+    image: 'redis:6-alpine'
+    command: redis-server
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/data'
+
+  electricity_saver_sidekiq:
+    depends_on:
+      - 'electricity_saver_postgres'
+      - 'electricity_saver_redis'
+    command: bundle exec sidekiq
+    volumes:
+      - '.:/electricity-saver'
+      - '/electricity-saver/tmp' # don't mount tmp directory
+    environment:
+      - REDIS_URL_SIDEKIQ=redis://redis:6379/1
+
+  electricity_saver:
+    image: "mathosk/electricity-saver:latest_aarch64"  # TODO: do not use latest, tag specific version once it is ready for prod release
+    # privileged: true # TODO is it needed?
+    ports:
+      - "8090:80"
+    restart: always
+    depends_on:
+      - 'electricity_saver_postgres'
+      - 'electricity_saver_redis'
+    network_mode: bridge
+    volumes:
+      - /data/electricity-saver/log:/home/ubuntu/electricity-saver/log
+      - /data/electricity-saver/public:/home/ubuntu/electricity-saver/public
+    environment:
+      - POSTGRES_HOST=electricity_saver_postgres
+      - POSTGRES_DB=electricity_saver_production
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#      - POSTGRES_PORT=5432
+      - RAILS_ENV=production
+      - RAILS_WORKERS=2
+      - RAILS_MIN_THREADS=5
+      - RAILS_MAX_THREADS=5
+      - REDIS_URL_SIDEKIQ=redis://redis:6379/1
+    tty: true
+
+volumes:
+  redis:
+  postgres:

@@ -7,7 +7,7 @@ class EventLog < ApplicationRecord
   validates :event_loggable, presence: true
   validates :network_id, presence: true
 
-  enum :status, { turned_on: 0, turned_off: 1, unknown: 2 }
+  enum :status, { turned_on: '0', turned_off: '1', unknown: '2' }
 
   scope :last_sorted, -> { limit(5).order('id desc') }
 

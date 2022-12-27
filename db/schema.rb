@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_27_074855) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_074855) do
     t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status", null: false
+    t.string "status", null: false
     t.integer "event_loggable_id", null: false
     t.string "event_loggable_type", null: false
     t.index ["event_loggable_type", "event_loggable_id"], name: "index_event_logs_on_event_loggable_type_and_event_loggable_id"

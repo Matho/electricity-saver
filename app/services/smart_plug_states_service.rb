@@ -12,7 +12,7 @@ class SmartPlugStatesService
       smart_plug_device.update!(current_state: state)
 
       # we want to save only changes, not every request change
-      next if CurrentState.last.state == state.to_s
+      next if CurrentState.last&.state == state.to_s
 
       CurrentState.create!({
                              state: state,
@@ -48,9 +48,9 @@ class SmartPlugStatesService
     api_state = parsed_body['state']&.to_sym
 
     case api_state
-    when 'on'
+    when :on
       :turned_on
-    when 'off'
+    when :off
       :turned_off
     else
       :unknown

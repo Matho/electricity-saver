@@ -34,3 +34,14 @@ rails credentials:edit --environment production
 
 ## Bootstrap 
 https://blog.eq8.eu/til/how-to-use-bootstrap-5-in-rails-7.html
+
+## Start
+```
+$ rake db:create
+$ rake db:schema:load
+$ rake db:seed
+```
+
+Open `http://localhost:3000/users/sign_up` in your browser and fill in registration form. Then change the `confirmed_at` column in the users table - fill it with current time.
+
+Then navigate to `http://localhost:3000/users/sign_in` and login via your password. You should be correctly signed in the app.

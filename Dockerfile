@@ -1,6 +1,6 @@
 # Pull base image
 ARG ARCH=aarch64
-FROM mathosk/rpi-ruby-3.2.0-ubuntu-$ARCH:latest
+FROM mathosk/rpi-ruby-3.2.0-ubuntu-$ARCH:latest as builder
 
 MAINTAINER Matho "martin.markech@matho.sk"
 

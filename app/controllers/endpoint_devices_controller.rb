@@ -38,13 +38,21 @@ class EndpointDevicesController < ApplicationController
     end
   end
 
-  # DELETE /endpoint_devices/1 or /endpoint_devices/1.json
   def destroy
-    @endpoint_device.destroy
+    destroyed = @endpoint_device.destroy
+
+    if destroyed
+      hash = {
+        notice: "Endpoint device was successfully destroyed."
+      }
+    else
+      hash = {
+        error: "Endpoint device was not destroyed."
+      }
+    end
 
     respond_to do |format|
-      format.html { redirect_to network_endpoint_devices_path(@current_network), notice: "Endpoint device was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to network_endpoint_devices_path(@current_network), hash  }
     end
   end
 

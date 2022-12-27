@@ -39,10 +39,20 @@ class SmartPlugDevicesController < ApplicationController
   end
 
   def destroy
-    @smart_plug_device.destroy
+    destroyed = @smart_plug_device.destroy
+
+    if destroyed
+      hash = {
+        notice: "Smart plug device was successfully destroyed."
+      }
+    else
+      hash = {
+        error: "Smart plug device was not destroyed."
+      }
+    end
 
     respond_to do |format|
-      format.html { redirect_to network_smart_plug_devices_path(@current_network) , notice: "Smart plug device was successfully destroyed." }
+      format.html { redirect_to network_smart_plug_devices_path(@current_network), hash }
     end
   end
 

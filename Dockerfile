@@ -27,6 +27,7 @@ WORKDIR $APP_HOME
 
 ARG BUNDLE_CODE__MATHO__SK
 ARG RAILS_ENV
+ARG RAILS_MASTER_KEY
 
 ADD ./Gemfile ./Gemfile
 ADD ./Gemfile.lock ./Gemfile.lock

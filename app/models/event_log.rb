@@ -14,6 +14,7 @@ class EventLog < ApplicationRecord
   after_create :create_scheduled_event
 
   private
+
   def create_scheduled_event
     # we want to schedule events only for not available endpoint devices, not for smart plugs
     return nil if self.event_loggable_type == 'SmartPlugDevice'

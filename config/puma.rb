@@ -8,7 +8,7 @@ threads threads_min, threads_max
 environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Executed in Docker container
-if File.exists?('/.dockerenv')
+if File.exist?('/.dockerenv')
   app_dir = File.expand_path("../..", __FILE__)
 
   stdout_redirect "#{app_dir}/log/puma.stdout.log", "#{app_dir}/log/puma.stderr.log", true

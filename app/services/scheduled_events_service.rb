@@ -6,7 +6,7 @@ class ScheduledEventsService
 
   def process
     datetimes_for_rules = []
-    current_day_name = Time.now.strftime("%A").downcase
+    current_day_name = Time.current.strftime("%A").downcase
 
     @network.rules.each do |rule|
       crons = [
@@ -15,7 +15,7 @@ class ScheduledEventsService
 
       cron_times = crons.map do |cron|
         cron_parser = CronParser.new(cron)
-        cron_parser.next(Time.now)
+        cron_parser.next(Time.current)
       end
 
       closest_datetime = cron_times.sort! {|a,b| a <=> b }.try(:first)

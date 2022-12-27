@@ -73,6 +73,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'timecop'
 end
 
 gem 'haml'

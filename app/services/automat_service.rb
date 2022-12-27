@@ -23,23 +23,29 @@ class AutomatService
 
     case scheduled_event.action
     when 'turned_on'
-      could_be_turned_on?(scheduled_event, devices_states)
+      scheduled_event.update(attributes_for_turn_on(devices_states))
     when 'turned_off'
-      could_be_turned_off?(scheduled_event, devices_states)
+      scheduled_event.update(attributes_for_turn_off(devices_states))
     end
   end
 
-  def could_be_turned_on?(scheduled_event, devices_states)
+  def attributes_for_turn_on(devices_states)
     if devices_states.map(&:available).include?(true)
       SmartPlugOnJob.perform_later(@smart_plug_device.id)
-      scheduled_event.update(status: :finished)
+
+      {
+        status: :finished
+      }
     end
   end
 
-  def could_be_turned_off?(scheduled_event, devices_states)
-    if devices_states.map(&:available).uniq == false # if all devices are off
+  def attributes_for_turn_off(devices_states)
+    if devices_states.map(&:available).uniq == [false] # if all devices are off
       SmartPlugOffJob.perform_later(@smart_plug_device.id)
-      scheduled_event.update(status: :finished)
+
+      {
+        status: :finished
+      }
     else
       reason = 'Device states: '
 
@@ -47,7 +53,10 @@ class AutomatService
         reason << [device_state.endpoint_device.ip_address, device_state.available ? '(ON) ' : '(OFF) '].join('')
       end
 
-      scheduled_event.update(status: :failed, reason: reason)
+      {
+        status: :failed,
+        reason: reason
+      }
     end
   end
 end

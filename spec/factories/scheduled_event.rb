@@ -4,7 +4,7 @@ FactoryBot.define do
     association :smart_plug_device, strategy: :create
 
     event_date { Date.today }
-    action { '0' }
+    action { :turned_on }
     status { :scheduled }
     reason { nil }
   end

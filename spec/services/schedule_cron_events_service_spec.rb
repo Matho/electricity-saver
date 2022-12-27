@@ -27,13 +27,13 @@ RSpec.describe ScheduleCronEventsService do
         scheduled_event_records = ScheduledEvent.all
 
         expect(scheduled_event_records.length).to eq 2
-        expect(scheduled_event_records[0].action).to eq 'turned_on'
-        expect(scheduled_event_records[0].network_id).to eq network.id
-        expect(scheduled_event_records[0].status).to eq 'scheduled'
-
-        expect(scheduled_event_records[1].action).to eq 'turned_off'
+        expect(scheduled_event_records[1].action).to eq 'turned_on'
         expect(scheduled_event_records[1].network_id).to eq network.id
         expect(scheduled_event_records[1].status).to eq 'scheduled'
+
+        expect(scheduled_event_records[0].action).to eq 'turned_off'
+        expect(scheduled_event_records[0].network_id).to eq network.id
+        expect(scheduled_event_records[0].status).to eq 'scheduled'
       end
     end
 

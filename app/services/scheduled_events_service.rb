@@ -27,6 +27,6 @@ class ScheduledEventsService
       end
     end
 
-    datetimes_for_rules
+    datetimes_for_rules.reverse!
   end
 end

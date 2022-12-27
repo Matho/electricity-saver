@@ -23,7 +23,7 @@ class SavedEnergyRecomputeService
 
     last_state_for_yesterday = states_for_yesterday.last&.state.presence ||  first_state_for_yesterday
 
-    pp flatten_states = [
+    flatten_states = [
       [first_state_for_yesterday, beginning_of_day],
       states_for_yesterday.map {|state| [state.state, state.created_at] },
       [last_state_for_yesterday, end_of_day]

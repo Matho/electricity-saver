@@ -60,8 +60,6 @@ RSpec.describe SavedEnergyRecomputeService do
         expect(saved_energy_record.energy_price_for_kwh).to eq 0.23
       end
     end
-
-    # TODO: cover with another combinations
   end
 end
 

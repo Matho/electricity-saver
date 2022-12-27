@@ -21,6 +21,8 @@ Open `http://localhost:3000/users/sign_up` in your browser and fill in registrat
 Then navigate to `http://localhost:3000/users/sign_in` and login via your password. You should be correctly signed in the app.
 
 ## Build Docker image
+Rename `secrets.yml.example` to `secrets.yml` and specify your secret value for production
+
 Build the app on the Raspberry PI:  
 ``` 
 $ sudo docker build --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=XXX -t mathosk/electricity-saver:latest .

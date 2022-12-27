@@ -13,4 +13,6 @@ class ScheduledEvent < ApplicationRecord
   enum :status, { scheduled: '0', finished: '1', failed: '2'}
 
   scope :last_sorted, -> { limit(5).order(id: :desc) }
+  scope :with_scheduled, -> { where(status: :scheduled) }
+  scope :order_by_event_date, -> { order(event_date: :asc) }
 end

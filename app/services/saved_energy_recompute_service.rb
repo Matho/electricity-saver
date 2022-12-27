@@ -4,23 +4,21 @@ class SavedEnergyRecomputeService
   end
 
   def process
-    # TOOD add where with active column
     @network.smart_plug_devices.each do |smart_plug_device|
       compute(smart_plug_device)
     end
   end
 
   private
-  # TODO do test coverage
   def compute(smart_plug_device)
     beginning_of_day = Date.yesterday.beginning_of_day
     end_of_day = Date.yesterday.end_of_day
 
     first_state_for_yesterday = smart_plug_device.current_states
-                                                 .where('created_at < ?', beginning_of_day ).order('id desc')
+                                                 .where('created_at < ?', beginning_of_day ).order(id: :desc)
                                                  .limit(1).first&.state.presence || 'turned_off'
 
-    states_for_yesterday = smart_plug_device.current_states.where('created_at > ? AND created_at < ?', beginning_of_day , end_of_day ).order('id asc')
+    states_for_yesterday = smart_plug_device.current_states.where('created_at > ? AND created_at < ?', beginning_of_day , end_of_day ).order(id: :asc)
 
     last_state_for_yesterday = states_for_yesterday.last&.state.presence ||  first_state_for_yesterday
 
@@ -39,8 +37,6 @@ class SavedEnergyRecomputeService
     i = 1 * 2 # skip first, do backward processing
     while i < flatten_states.length
       previous_state = flatten_states[i - 2]
-      state_name = flatten_states[i]
-
       hash_with_intervals[previous_state] << [flatten_states[i - 1], flatten_states[i + 1]]
 
       i = i + 2
@@ -53,11 +49,11 @@ class SavedEnergyRecomputeService
       powered_on_time_in_seconds += on_time
     end
 
-    powered_on_time_in_hours = powered_on_time_in_seconds / 60 / 60  # return hours in ON state
+    powered_on_time_in_hours = powered_on_time_in_seconds / 60 / 60  # hours for ON state
     powered_off_time_in_hours = 24.0 - powered_on_time_in_hours
 
     watt_hours_off_for_day = smart_plug_device.avg_energy_consumption * powered_off_time_in_hours
-    total_energy_price = watt_hours_off_for_day * (smart_plug_device.energy_price_for_kwh / 1000) # eurs
+    total_energy_price = watt_hours_off_for_day * (smart_plug_device.energy_price_for_kwh / 1000) # EUR
 
     saved_energy = SavedEnergy.find_or_initialize_by(day: Date.yesterday)
     saved_energy.assign_attributes({

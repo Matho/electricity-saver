@@ -2,11 +2,11 @@ class AutomatService
 
   def initialize(network)
     @network = network
-    @smart_plug_device = @network.smart_plug_devices.first # TODO
+    @smart_plug_device = @network.smart_plug_devices.first # only 1 smart plug is currently allowed to create
   end
 
   def process
-    @network.scheduled_events.where(status: :scheduled).order('event_date ASC').each do |scheduled_event|
+    @network.scheduled_events.with_scheduled.order_by_event_date.each do |scheduled_event|
       compute(scheduled_event)
     end
   end
@@ -14,7 +14,7 @@ class AutomatService
   private
 
   def compute(scheduled_event)
-    endpoint_devices = @network.endpoint_devices.where(active_monitoring: true)
+    endpoint_devices = @network.endpoint_devices.with_active_monitoring
 
     devices_states = @network.uptime_stats.where(endpoint_device_id: endpoint_devices)
 

@@ -11,4 +11,6 @@ class EndpointDevice < ApplicationRecord
             :format => {
               :with => Regexp.union(Resolv::IPv4::Regex, Resolv::IPv6::Regex), :message => "Not an valid IP format"
             }
+
+  scope :with_active_monitoring, -> { where(active_monitoring: true) }
 end

@@ -7,7 +7,7 @@ class PingStatsService
   end
 
   def process
-    @network.endpoint_devices.where(active_monitoring: true).each do |endpoint_device|
+    @network.endpoint_devices.with_active_monitoring.each do |endpoint_device|
       ip_address = endpoint_device.ip_address
 
       net_ping = Net::Ping::External.new(ip_address)
@@ -23,11 +23,11 @@ class PingStatsService
                         network_id: @network.id
                       })
 
-      uptime_stat = UptimeStat.find_or_initialize_by({ endpoint_device_id: endpoint_device.id })
+      uptime_stat = UptimeStat.find_or_initialize_by(endpoint_device_id: endpoint_device.id)
 
       uptime_stat.assign_attributes({
                            available: success,
-                           check_date: Time.now,
+                           check_date: Time.current,
                            network_id: @network.id
                          })
       uptime_stat.save!

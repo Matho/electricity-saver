@@ -2,7 +2,7 @@ class UptimeStatsController < ApplicationController
   before_action :set_uptime_stat, only: %i[ show destroy ]
 
   def index
-    @uptime_stats = @current_network.uptime_stats.page(params[:page]).order('id desc')
+    @uptime_stats = @current_network.uptime_stats.page(params[:page]).order(id: :desc)
   end
 
   def show

@@ -2,7 +2,7 @@ class ScheduledEventsController < ApplicationController
   before_action :set_scheduled_event, only: %i[ destroy ]
 
   def index
-    @scheduled_events = @current_network.scheduled_events.page(params[:page]).order('id desc')
+    @scheduled_events = @current_network.scheduled_events.page(params[:page]).order(id: :desc)
   end
 
   def destroy

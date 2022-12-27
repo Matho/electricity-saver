@@ -2,7 +2,7 @@ class SavedEnergiesController < ApplicationController
   before_action :set_saved_energy, only: %i[ destroy ]
 
   def index
-    @saved_energies = @current_network.saved_energies.includes(:smart_plug_device).page(params[:page]).order('id desc')
+    @saved_energies = @current_network.saved_energies.includes(:smart_plug_device).page(params[:page]).order(id: :desc)
   end
 
   def destroy

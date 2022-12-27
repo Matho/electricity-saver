@@ -1,5 +1,4 @@
 class SmartPlugDevicesController < ApplicationController
-  before_action :set_network
   before_action :set_smart_plug_device, only: %i[ show edit update destroy ]
 
   def index

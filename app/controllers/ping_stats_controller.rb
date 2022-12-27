@@ -2,7 +2,7 @@ class PingStatsController < ApplicationController
   before_action :set_ping_stat, only: %i[ show destroy ]
 
   def index
-    @ping_stats = @current_network.ping_stats.page(params[:page]).order('id desc')
+    @ping_stats = @current_network.ping_stats.page(params[:page]).order(id: :desc)
   end
 
   def destroy
@@ -10,7 +10,6 @@ class PingStatsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to network_ping_stats_url(@current_network), notice: "Ping stat was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

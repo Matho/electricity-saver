@@ -1,9 +1,8 @@
 class RulesController < ApplicationController
-  before_action :set_network
   before_action :set_rule, only: %i[ show edit update destroy ]
 
   def index
-    @rules = @current_network.rules.includes(:smart_plug_device).page(params[:page]).order('id desc')
+    @rules = @current_network.rules.includes(:smart_plug_device).page(params[:page]).order(id: :desc)
   end
 
   def show

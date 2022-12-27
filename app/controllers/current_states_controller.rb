@@ -1,7 +1,7 @@
 class CurrentStatesController < ApplicationController
 
   def index
-    @current_states = @current_network.current_states.includes(:smart_plug_device).page(params[:page]).order('id desc')
+    @current_states = @current_network.current_states.includes(:smart_plug_device).page(params[:page]).order(id: :desc)
   end
 
 

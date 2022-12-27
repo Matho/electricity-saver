@@ -6,7 +6,7 @@ class UptimeStat < ApplicationRecord
   validates :available, inclusion: [true, false]
   validates :network_id, presence: true
 
-  scope :last_sorted, -> { limit(5).order('id desc') }
+  scope :last_sorted, -> { limit(5).order(id: :desc) }
 
   after_create :create_event_log
   after_update :create_event_log, if: :available_previously_changed?

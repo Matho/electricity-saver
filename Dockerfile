@@ -14,13 +14,12 @@ RUN apt-get update && apt-get install -y \
     locales \
     nginx \
     cron \
-    bash \
-    imagemagick \
-    python \
     nodejs \
     npm \
+    bash \
     libcurl4 \
-    libcurl4-openssl-dev
+    libcurl4-openssl-dev \
+    tzdata
 
 ENV APP_HOME /app
 RUN mkdir $APP_HOME
@@ -55,11 +54,9 @@ RUN apt-get update && apt-get install -y \
     nginx \
     cron \
     bash \
-    imagemagick \
-    python \
     libcurl4 \
     libcurl4-openssl-dev \
-    exiftool
+    tzdata
 
 ENV APP_HOME /app
 RUN mkdir $APP_HOME

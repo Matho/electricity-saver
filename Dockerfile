@@ -58,7 +58,7 @@ RUN apt-get update && apt-get install -y \
     libcurl4 \
     libcurl4-openssl-dev \
     tzdata \
-    nodejs 
+    nodejs
 
 ENV APP_HOME /app
 RUN mkdir $APP_HOME

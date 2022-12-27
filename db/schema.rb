@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_094634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
     t.datetime "updated_at", null: false
     t.index ["created_at"], name: "index_current_states_on_created_at"
     t.index ["network_id"], name: "index_current_states_on_network_id"
+    t.index ["smart_plug_device_id"], name: "index_current_states_on_smart_plug_device_id"
+    t.index ["state"], name: "index_current_states_on_state"
     t.index ["updated_at"], name: "index_current_states_on_updated_at"
   end
 
@@ -35,6 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active_monitoring", default: true
+    t.index ["active_monitoring"], name: "index_endpoint_devices_on_active_monitoring"
+    t.index ["ip_address"], name: "index_endpoint_devices_on_ip_address"
     t.index ["network_id"], name: "index_endpoint_devices_on_network_id"
   end
 
@@ -46,8 +50,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
     t.string "status", null: false
     t.integer "event_loggable_id", null: false
     t.string "event_loggable_type", null: false
+    t.index ["event_date"], name: "index_event_logs_on_event_date"
+    t.index ["event_loggable_id"], name: "index_event_logs_on_event_loggable_id"
     t.index ["event_loggable_type", "event_loggable_id"], name: "index_event_logs_on_event_loggable_type_and_event_loggable_id"
+    t.index ["event_loggable_type"], name: "index_event_logs_on_event_loggable_type"
     t.index ["network_id"], name: "index_event_logs_on_network_id"
+    t.index ["status"], name: "index_event_logs_on_status"
   end
 
   create_table "networks", force: :cascade do |t|
@@ -56,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
     t.boolean "active", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["active"], name: "index_networks_on_active"
   end
 
   create_table "ping_stats", force: :cascade do |t|
@@ -66,7 +75,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
     t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ip_address"], name: "index_ping_stats_on_ip_address"
     t.index ["network_id"], name: "index_ping_stats_on_network_id"
+    t.index ["response_status"], name: "index_ping_stats_on_response_status"
   end
 
   create_table "rules", force: :cascade do |t|
@@ -84,7 +95,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
     t.string "cron_saturday"
     t.string "cron_sunday"
     t.index ["action", "smart_plug_device_id"], name: "index_rules_on_action_and_smart_plug_device_id", unique: true
+    t.index ["action"], name: "index_rules_on_action"
     t.index ["network_id"], name: "index_rules_on_network_id"
+    t.index ["smart_plug_device_id"], name: "index_rules_on_smart_plug_device_id"
   end
 
   create_table "saved_energies", force: :cascade do |t|
@@ -98,6 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
     t.decimal "powered_on_hours"
     t.decimal "powered_off_hours"
     t.index ["network_id"], name: "index_saved_energies_on_network_id"
+    t.index ["smart_plug_device_id"], name: "index_saved_energies_on_smart_plug_device_id"
   end
 
   create_table "scheduled_events", force: :cascade do |t|
@@ -109,7 +123,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
     t.datetime "updated_at", null: false
     t.string "status", default: "0", null: false
     t.text "reason"
+    t.index ["action"], name: "index_scheduled_events_on_action"
+    t.index ["event_date"], name: "index_scheduled_events_on_event_date"
     t.index ["network_id"], name: "index_scheduled_events_on_network_id"
+    t.index ["smart_plug_device_id"], name: "index_scheduled_events_on_smart_plug_device_id"
+    t.index ["status"], name: "index_scheduled_events_on_status"
   end
 
   create_table "smart_plug_devices", force: :cascade do |t|
@@ -137,6 +155,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_084944) do
     t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["available"], name: "index_uptime_stats_on_available"
+    t.index ["endpoint_device_id"], name: "index_uptime_stats_on_endpoint_device_id"
     t.index ["network_id"], name: "index_uptime_stats_on_network_id"
   end
 

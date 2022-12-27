@@ -27,6 +27,7 @@ ActiveRecord::Base.transaction do
                                         avg_energy_consumption: 50,
                                         token: 'token',
                                         off_timeout: 60,
+                                        current_state: 'unknown',
                                         network_id: network.id
                                       })
   smart_plug_device.save!
@@ -137,5 +138,7 @@ ActiveRecord::Base.transaction do
 
   ## Saved energies
   SavedEnergyRecomputeJob.perform_now
+
+  p "Seeds imported OK"
 end
 

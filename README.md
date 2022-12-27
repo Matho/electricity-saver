@@ -25,10 +25,18 @@ Rename `secrets.yml.example` to `secrets.yml` and specify your secret value for 
 
 Build the app on the Raspberry PI:  
 ``` 
-$ sudo docker build --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=XXX -t mathosk/electricity-saver:latest .
+$ sudo docker build --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=XXX -t mathosk/electricity-saver:latest_aarch64 .
 ```
 
 Push the builded image:  
 ``` 
 $ sudo docker push mathosk/electricity-saver:latest
 ```
+
+## Start the app
+Allow port for main app
+`$ ufw allow 8090`
+
+Start the docker-compose via:  
+`sudo docker-compose -f docker-compose_aarch64.yml up -d`
+

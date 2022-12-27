@@ -31,14 +31,14 @@ class AutomatService
 
   def could_be_turned_on?(scheduled_event, devices_states)
     if devices_states.map(&:available).include?(true)
-      SmartPlugOnJob.perform_async(smart_plug_device_id: @smart_plug_device)
+      SmartPlugOnJob.perform_later(@smart_plug_device.id)
       scheduled_event.update(status: :finished)
     end
   end
 
   def could_be_turned_off?(scheduled_event, devices_states)
     if devices_states.map(&:available).uniq == false # if all devices are off
-      SmartPlugOffJob.perform_async(smart_plug_device_id: @smart_plug_device)
+      SmartPlugOffJob.perform_later(@smart_plug_device.id)
       scheduled_event.update(status: :finished)
     else
       reason = 'Device states: '

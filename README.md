@@ -27,7 +27,7 @@ Then navigate to `http://localhost:3000/users/sign_in` and login via your passwo
 ## Build Docker image
 Build the app on the Raspberry PI:  
 ``` 
-$ sudo docker build --build-arg RAILS_ENV=production -t mathosk/electricity-saver:latest .
+$ sudo docker build --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=XXXX -t mathosk/electricity-saver:latest .
 ```
 
 Push the builded image:  

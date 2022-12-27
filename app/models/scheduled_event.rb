@@ -12,5 +12,5 @@ class ScheduledEvent < ApplicationRecord
   enum :action, { turned_on: '0', turned_off: '1' }
   enum :status, { scheduled: '0', finished: '1', failed: '2'}
 
-  scope :last_sorted, -> { limit(5).order('id desc') }
+  scope :last_sorted, -> { limit(5).order(id: :desc) }
 end

@@ -11,4 +11,6 @@ class Network < ApplicationRecord
 
   validates :title, presence: true
   validates :active, inclusion: { in: [ true, false ] }
+
+  scope :with_active, -> { where(active: true) }
 end

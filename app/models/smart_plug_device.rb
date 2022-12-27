@@ -1,8 +1,8 @@
 class SmartPlugDevice < ApplicationRecord
   belongs_to :network
-  has_many :current_states
-  has_many :rules
-  has_many :event_logs, as: :event_loggable
+  has_many :current_states, dependent: :restrict_with_error
+  has_many :rules, dependent: :restrict_with_error
+  has_many :event_logs, as: :event_loggable, dependent: :restrict_with_error
 
   validates :title, presence: true
   validates :api_title, presence: true

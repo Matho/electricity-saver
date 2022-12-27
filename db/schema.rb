@@ -134,11 +134,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_094634) do
     t.string "title", null: false
     t.text "description"
     t.string "api_title", null: false
+    t.string "current_state", null: false
     t.string "api_status_url", null: false
     t.bigint "network_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "current_state", default: "2", null: false
     t.decimal "energy_price_for_kwh"
     t.decimal "avg_energy_consumption"
     t.text "token"
@@ -166,8 +166,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_094634) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -10,6 +10,7 @@ class SavedEnergyRecomputeService
   end
 
   private
+
   def compute(smart_plug_device)
     beginning_of_day = Date.yesterday.beginning_of_day
     end_of_day = Date.yesterday.end_of_day
@@ -22,7 +23,7 @@ class SavedEnergyRecomputeService
 
     last_state_for_yesterday = states_for_yesterday.last&.state.presence ||  first_state_for_yesterday
 
-    flatten_states = [
+    pp flatten_states = [
       [first_state_for_yesterday, beginning_of_day],
       states_for_yesterday.map {|state| [state.state, state.created_at] },
       [last_state_for_yesterday, end_of_day]
@@ -49,7 +50,7 @@ class SavedEnergyRecomputeService
       powered_on_time_in_seconds += on_time
     end
 
-    powered_on_time_in_hours = powered_on_time_in_seconds / 60 / 60  # hours for ON state
+    powered_on_time_in_hours = (powered_on_time_in_seconds / 60 / 60).round(2) # hours for ON state
     powered_off_time_in_hours = 24.0 - powered_on_time_in_hours
 
     watt_hours_off_for_day = smart_plug_device.avg_energy_consumption * powered_off_time_in_hours
@@ -62,7 +63,8 @@ class SavedEnergyRecomputeService
                                      network_id: @network.id,
                                      total_energy_price: total_energy_price,
                                      powered_on_hours: powered_on_time_in_hours,
-                                     powered_off_hours: powered_off_time_in_hours
+                                     powered_off_hours: powered_off_time_in_hours,
+                                     energy_price_for_kwh: smart_plug_device.energy_price_for_kwh
                                    })
     saved_energy.save!
   end

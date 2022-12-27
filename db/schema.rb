@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_27_094634) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_151730) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,6 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_094634) do
     t.decimal "total_energy_price"
     t.decimal "powered_on_hours"
     t.decimal "powered_off_hours"
+    t.decimal "energy_price_for_kwh", default: "0.0"
     t.index ["network_id"], name: "index_saved_energies_on_network_id"
     t.index ["smart_plug_device_id"], name: "index_saved_energies_on_smart_plug_device_id"
   end

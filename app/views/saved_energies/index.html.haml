@@ -35,7 +35,7 @@
             %th
               = saved_energy.total_energy_price.round(4)
             %th
-              = saved_energy.smart_plug_device.energy_price_for_kwh
+              = saved_energy.energy_price_for_kwh
             %td
               = link_to 'Delete', network_saved_energy_path(@current_network, saved_energy), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
 

@@ -21,6 +21,6 @@ class SavedEnergiesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def saved_energy_params
-    params.require(:saved_energy).permit(:smart_plug_device_id, :savings, :network_id)
+    params.require(:saved_energy).permit(:smart_plug_device_id, :savings, :network_id, :energy_price_for_kwh)
   end
 end

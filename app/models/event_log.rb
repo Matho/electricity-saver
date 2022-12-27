@@ -15,6 +15,9 @@ class EventLog < ApplicationRecord
 
   private
   def create_scheduled_event
+    # we want to schedule events only for not available endpoint devices, not for smart plugs
+    return nil if self.event_loggable_type == 'SmartPlugDevice'
+
     # we are taking first smart plug, because of it only 1 smart plug is currently supported for network
     smart_plug_device = self.network.smart_plug_devices.first
 

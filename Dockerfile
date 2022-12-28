@@ -19,7 +19,8 @@ RUN apt-get update && apt-get install -y \
     bash \
     libcurl4 \
     libcurl4-openssl-dev \
-    tzdata
+    tzdata \
+    iputils-ping
 
 ENV APP_HOME /app
 RUN mkdir $APP_HOME
@@ -58,7 +59,8 @@ RUN apt-get update && apt-get install -y \
     libcurl4 \
     libcurl4-openssl-dev \
     tzdata \
-    nodejs
+    nodejs \
+    iputils-ping
 
 ENV APP_HOME /app
 RUN mkdir $APP_HOME

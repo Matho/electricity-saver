@@ -34,9 +34,35 @@ $ sudo docker push mathosk/electricity-saver:latest
 ```
 
 ## Start the app
-Allow port for main app
+Allow port for main app  
 `$ ufw allow 8090`
 
-Start the docker-compose via:  
-`sudo docker-compose -f docker-compose_aarch64.yml up -d`
+Create docker network  
+`$ sudo docker network create electricity-saver-nw`
+
+Start the docker-compose via:  (use `-d` for detached at the end of command)  
+`sudo docker-compose -f docker-compose_aarch64.yml up`  
+`sudo docker-compose -f docker-compose_aarch64.yml stop`
+
+Optional, if you want to seed some initial data:  
+`$ sudo docker-compose -f docker-compose_aarch64.yml run electricity_saver rake db:seed RAILS_ENV=production`
+
+`sudo docker-compose -f docker-compose_aarch64.yml up -d`  
+
+Visit `http://10.0.2.5:8090/users/sign_up`  
+
+Select container with rails project and copy hash:  
+`$ sudo docker container ls -a`  
+`$ sudo docker container exec -it c82b39edfa70 bash`
+
+Execute rails console in rails project  
+`$ bundle exec rails c`
+
+Activate your admin user:  
+`User.last.update!(confirmed_at: Time.now)`
+
+
+
+
+
 

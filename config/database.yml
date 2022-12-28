@@ -1,22 +1,29 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV['RAILS_MAX_THREADS'].to_i * 30 %>
-  host: <%= ENV.fetch("POSTGRES_HOST") { 'postgres' } %>
-  database: <%= ENV.fetch("POSTGRES_DB") { 'db' } %>
-  username: <%= ENV.fetch("POSTGRES_USER") { 'postgres' } %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD") { 'postgres' } %>
-  port: <%= ENV.fetch("POSTGRES_PORT") { 5432 } %>
+  pool: <%= 2 * 30 %>
+  database: <%= Rails.application.credentials.development[:database] %>
+  username: <%= Rails.application.credentials.development[:username] %>
+  password: <%= Rails.application.credentials.development[:password] %>
+  host: <%= Rails.application.credentials.development[:host] %>
+  port: <%= Rails.application.credentials.development[:port] %>
 
 development:
   <<: *default
 
-staging:
+staging: #TODO
   <<: *default
 
 test:
   <<: *default
-  database: <%= ENV.fetch("POSTGRES_TEST_DB") { 'db_test' } %><%= ENV['TEST_ENV_NUMBER'] %>
+  database: <%= ENV.fetch("POSTGRES_TEST_DB") { 'electricity_saver_test' } %><%= ENV['TEST_ENV_NUMBER'] %>
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV['RAILS_MAX_THREADS'].to_i * 30 %>
+  host: <%= ENV.fetch("POSTGRES_HOST") { 'localhost' } %>
+  database: <%= ENV.fetch("POSTGRES_DB") { 'electricity_saver_production' } %>
+  username: <%= ENV.fetch("POSTGRES_USER") { 'electricity_saver' } %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") { '' } %>
+  port: <%= ENV.fetch("POSTGRES_PORT") { 5432 } %>

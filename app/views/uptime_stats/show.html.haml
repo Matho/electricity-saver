@@ -1,4 +1,5 @@
 = render @uptime_stat
 %div
   = link_to "Back to uptime stats", network_uptime_stats_path(@current_network)
+  |
   = link_to 'Destroy this uptime stats', network_uptime_stat_path(@current_network, @uptime_stat), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}

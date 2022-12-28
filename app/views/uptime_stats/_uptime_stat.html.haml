@@ -1,13 +1,26 @@
-%div{id: "#{dom_id uptime_stat}"}
-  %p
-    %strong Endpoint device:
-    = uptime_stat.endpoint_device.title
-  %p
-    %strong Available:
-    = uptime_stat.available
-  %p
-    %strong Check date:
-    = uptime_stat.check_date
-  %p
-    %strong Network:
-    = uptime_stat.network.title
+%h1
+  = "Uptime Stat ##{uptime_stat.id}"
+
+%div
+  %table.table
+    %tbody
+      %tr
+        %td.text-end
+          %strong Endpoint device:
+        %td
+          = uptime_stat.endpoint_device.title
+      %tr
+        %td.text-end
+          %strong Available:
+        %td
+          = uptime_stat.available
+      %tr
+        %td.text-end
+          %strong Check date:
+        %td
+          = uptime_stat.check_date
+      %tr
+        %td.text-end
+          %strong Network:
+        %td
+          = uptime_stat.network.title

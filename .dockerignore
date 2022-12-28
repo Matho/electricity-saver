@@ -16,3 +16,4 @@ docker-compose.*
 node_modules/*
 config/master.key
 config/credentials/production.key
+docker-compose_aarch64.yml.prod

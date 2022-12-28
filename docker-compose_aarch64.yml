@@ -2,58 +2,79 @@ version: "3.0"
 
 services:
   electricity_saver_postgres:
-    image: 'postgres:15-alpine'
+    image: 'postgres:15.1-alpine'
     volumes:
-      - 'postgres:/var/lib/postgresql/data'
+      - '/data/electricity_saver_postgres:/home/postgres'
     ports:
       - '5433:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=YOUR_PASSWORD
+      - POSTGRES_DB=electricity_saver_production
+      - POSTGRESQL_LISTEN=0.0.0.0:5432
+      - PGDATA=/home/postgres/data/pgdata # https://github.com/docker-library/postgres/issues/476#issuecomment-979298145
+    networks:
+      - electricity-saver-nw
 
   electricity_saver_redis:
     image: 'redis:6-alpine'
+
     command: redis-server
     ports:
       - '6379:6379'
     volumes:
-      - 'redis:/data'
+      - '/data/electricity_saver_redis:/data'
+    networks:
+      - electricity-saver-nw
 
   electricity_saver_sidekiq:
+    image: "mathosk/electricity-saver:latest_aarch64"
     depends_on:
       - 'electricity_saver_postgres'
       - 'electricity_saver_redis'
-    build: .
     command: bundle exec sidekiq
-    volumes:
-      - '.:/electricity-saver'
-      - '/electricity-saver/tmp' # don't mount tmp directory
     environment:
-      - REDIS_URL_SIDEKIQ=redis://redis:6379/1
+      - RAILS_MASTER_KEY=YOUR_MASTER_KEY_VALUE
+      - POSTGRES_HOST=electricity_saver_postgres
+      - POSTGRES_DB=electricity_saver_production
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=YOUR_PASSWORD
+      - POSTGRES_PORT=5432
+      - RAILS_ENV=production
+      - RAILS_WORKERS=2
+      - RAILS_MIN_THREADS=5
+      - RAILS_MAX_THREADS=5
+      - REDIS_URL_SIDEKIQ=redis://electricity_saver_redis:6379/1
+    networks:
+      - electricity-saver-nw
 
   electricity_saver:
-    image: "mathosk/electricity-saver:latest_aarch64"  # TODO: do not use latest, tag specific version once it is ready for prod release
-    # privileged: true # TODO is it needed?
+    image: "mathosk/electricity-saver:latest_aarch64"
     ports:
       - "8090:80"
     restart: always
     depends_on:
       - 'electricity_saver_postgres'
       - 'electricity_saver_redis'
-    network_mode: bridge
     volumes:
-      - /data/electricity-saver/log:/home/ubuntu/electricity-saver/log
-      - /data/electricity-saver/public:/home/ubuntu/electricity-saver/public
+      - '/data/electricity-saver/log:/home/ubuntu/electricity-saver/log'
+      - '/data/electricity-saver/public:/home/ubuntu/electricity-saver/public'
     environment:
+      - RAILS_MASTER_KEY=YOUR_MASTER_KEY_VALUE
       - POSTGRES_HOST=electricity_saver_postgres
       - POSTGRES_DB=electricity_saver_production
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=YOUR_PASSWORD
+      - POSTGRES_PORT=5432
       - RAILS_ENV=production
       - RAILS_WORKERS=2
       - RAILS_MIN_THREADS=5
       - RAILS_MAX_THREADS=5
-      - REDIS_URL_SIDEKIQ=redis://redis:6379/1
+      - REDIS_URL_SIDEKIQ=redis://electricity_saver_redis:6379/1
+    networks:
+      - electricity-saver-nw
     tty: true
 
-volumes:
-  redis:
-  postgres:
+networks:
+  electricity-saver-nw:
+    driver: bridge

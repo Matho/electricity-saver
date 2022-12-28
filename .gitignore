@@ -33,3 +33,5 @@
 /.idea
 /config/credentials/production.key
 /config/secrets.yml
+
+docker-compose_aarch64.yml.prod

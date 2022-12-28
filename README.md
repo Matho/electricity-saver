@@ -32,6 +32,7 @@ Push the builded image:
 ``` 
 $ sudo docker push mathosk/electricity-saver:latest
 ```
+Alternatively, tag the build with release version
 
 ## Start the app
 Allow port for main app  
@@ -40,7 +41,7 @@ Allow port for main app
 Create docker network  
 `$ sudo docker network create electricity-saver-nw`
 
-Start the docker-compose via:  (use `-d` for detached at the end of command)  
+Start the docker-compose via:  (use `-d` for detached state at the end of command)  
 `sudo docker-compose -f docker-compose_aarch64.yml up`  
 `sudo docker-compose -f docker-compose_aarch64.yml stop`
 

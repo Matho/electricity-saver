@@ -60,9 +60,3 @@ Execute rails console in rails project
 
 Activate your admin user:  
 `User.last.update!(confirmed_at: Time.now)`
-
-
-
-
-
-

@@ -26,8 +26,8 @@ RSpec.describe AutomatService do
         let(:network) { create(:network)}
         let(:endpoint_devices) {
           [
-            create(:endpoint_device, ip_address: '10.0.3.10', active_monitoring: true, network: network),
-            create(:endpoint_device, ip_address: '10.0.3.11', active_monitoring: true, network: network),
+            create(:endpoint_device, ip_address: '10.0.3.10', active_monitoring: true, needs_to_be_available: true, network: network),
+            create(:endpoint_device, ip_address: '10.0.3.11', active_monitoring: true, needs_to_be_available: true, network: network),
           ]
         }
         let!(:uptime_stats) {
@@ -64,8 +64,8 @@ RSpec.describe AutomatService do
           let(:network) { create(:network)}
           let(:endpoint_devices) {
             [
-              create(:endpoint_device, ip_address: '10.0.3.10', active_monitoring: true, network: network),
-              create(:endpoint_device, ip_address: '10.0.3.11', active_monitoring: true, network: network),
+              create(:endpoint_device, ip_address: '10.0.3.10', active_monitoring: true, needs_to_be_available: true, network: network),
+              create(:endpoint_device, ip_address: '10.0.3.11', active_monitoring: true, needs_to_be_available: true, network: network),
             ]
           }
           let!(:uptime_stats) {
@@ -103,8 +103,8 @@ RSpec.describe AutomatService do
           let(:network) { create(:network)}
           let(:endpoint_devices) {
             [
-              create(:endpoint_device, ip_address: '10.0.3.10', active_monitoring: true, network: network),
-              create(:endpoint_device, ip_address: '10.0.3.11', active_monitoring: true, network: network),
+              create(:endpoint_device, ip_address: '10.0.3.10', active_monitoring: true, needs_to_be_available: true, network: network),
+              create(:endpoint_device, ip_address: '10.0.3.11', active_monitoring: true, needs_to_be_available: true, network: network),
             ]
           }
           let!(:uptime_stats) {

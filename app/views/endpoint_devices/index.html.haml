@@ -14,6 +14,7 @@
           %th{scope: "col"} ID
           %th{scope: "col"} Title
           %th{scope: "col"} Active Monitoring
+          %th{scope: "col"} Needs To Be Available
           %th{scope: "col"} Description
           %th{scope: "col"} IP Address
           %th{scope: "col"} Actions
@@ -26,6 +27,8 @@
               = endpoint_device.title
             %td
               = endpoint_device.active_monitoring
+            %td
+              = endpoint_device.needs_to_be_available
             %td
               = endpoint_device.description
             %td

@@ -17,7 +17,7 @@ class AutomatService
     # if event is in future, do not process it
     return nil if Time.current < scheduled_event.event_date
 
-    endpoint_devices = @network.endpoint_devices.with_active_monitoring
+    endpoint_devices = @network.endpoint_devices.with_needs_to_be_available
 
     devices_states = @network.uptime_stats.where(endpoint_device_id: endpoint_devices)
 

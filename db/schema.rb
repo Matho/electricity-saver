@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_31_161753) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_31_162905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_31_161753) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active_monitoring", default: true
+    t.boolean "needs_to_be_available", default: false, null: false
     t.index ["active_monitoring"], name: "index_endpoint_devices_on_active_monitoring"
     t.index ["ip_address"], name: "index_endpoint_devices_on_ip_address"
     t.index ["network_id"], name: "index_endpoint_devices_on_network_id"

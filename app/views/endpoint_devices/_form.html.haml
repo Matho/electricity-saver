@@ -7,6 +7,10 @@
     = f.radio_button :active_monitoring, 1, label: "Active", checked: f.object.active_monitoring
     = f.radio_button :active_monitoring, 0, label: "Inactive", checked: !f.object.active_monitoring
 
+  = f.form_group :needs_to_be_available, label: { text: "Needs To Be Available" }, help: "Select, if you want to use the status of this device to do turn on/off the internet via Automat" do
+    = f.radio_button :needs_to_be_available, 1, label: "Active", checked: f.object.needs_to_be_available
+    = f.radio_button :needs_to_be_available, 0, label: "Inactive", checked: !f.object.needs_to_be_available
+
   = f.text_field :gps_position, help: "Optional GPS position of device"
 
   = f.text_field :description, help: "Optional description"

@@ -1,0 +1,6 @@
+/.idea
+/config
+/log
+/tmp
+docker-compose_aarch64.yml.prod
+

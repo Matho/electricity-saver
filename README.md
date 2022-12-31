@@ -250,3 +250,117 @@ For Bearer, set your long lived token from Home Assistant:
 Content-Type: application/json
 Authorization: Bearer eyJ0eXA...
 ```
+
+## 4. Remote access to Electricity Saver without need of public IP
+If you use for example Starlink, it is not possible to do port forwarding or buy public IP, yet. 
+
+But you can use some tools like Pgrok. [Pgrok](https://github.com/jerson/pgrok) is self-hosted Ngrok service. You do not need to pay for it, but you need some virtual machine with public IP to install the Pgrok in. Also, you need to buy some DV ssl certificate. Then, you will be tunneling all communication via this machine with public IP. You can use some basic droplet from [Digitalocean](https://www.digitalocean.com), to do the work.
+
+### 4.1 Pgrok installation on VPS
+The steps are published on `https://github.com/jerson/pgrok/blob/master/docs/SELFHOSTING.md#protect-you-clientpgrok-to-serverpgrokd-connection-with-a-ca`
+
+- I have bought ssl cert for `electricity-saver.YOUR-website.domain` domain. It is good enough to buy some basic domain-validated cert, e.g.: [https://cheapsslsecurity.com/fastssl/dv-ssl-certificate.html](https://cheapsslsecurity.com/fastssl/dv-ssl-certificate.html) for 7 dollars per year 
+- I have created subdomain A DNS record for `electricity-saver.YOUR-website.domain` domain
+- I didnt compile Pgrok from source code, but I have used docker image from `jerson/pgrok`
+- my docker stack recipe for Docker Swarm and Traefic is following:
+```
+version: "3.7"
+
+services:
+  pgrokd:
+    image: jerson/pgrok
+    entrypoint: pgrokd
+    command: -domain YOUR-website.domain -httpAddr=:80 -httpsAddr=:443 -tunnelAddr=:4443 -tlsCrt=/certs/tls.crt -tlsKey=/certs/tls.key -tunnelTLSClientCA=/certs/ca.crt
+    networks:
+      spilo_db-nw:
+        ipv4_address: 10.0.2.3
+    ports:
+      - 7093:80
+      - 7094:443
+      - 4443:4443
+    volumes:
+      - /home/ubuntu/pgrok/certs:/certs
+    deploy:
+      labels:
+        - traefik.http.routers.pgrokd.rule=Host(`electricity-saver.YOUR-website.domain`)
+        - traefik.http.routers.pgrokd.entrypoints=web
+
+
+        - traefik.http.routers.pgrokd-secure.rule=Host(`electricity-saver.YOUR-website.domain`)
+        - traefik.http.routers.pgrokd-secure.tls=true
+        - traefik.http.routers.pgrokd-secure.entrypoints=web-secure
+        - traefik.http.services.pgrokd-secure.loadbalancer.server.port=80
+        - traefik.http.routers.pgrokd-secure.tls.domains[0].main=electricity-saver.YOUR-website.domain
+        - traefik.docker.network=spilo_db-nw
+      replicas: 1
+
+networks:
+  spilo_db-nw:
+    external: true
+```
+- replace `electricity-saver.YOUR-website.domain` in the recipe with your own subdomain
+- for the `command` key, for `tlsCrt` the public key of bought ssl cert is used. For `tlsKey` value the private key of bought ssl cert is used
+- tunnelTLSClientCA is my custom CA certificate - only clients with this installed CA are able to create the pgrok tunnel to `electricity-saver.YOUR-website.domain` I dont want to allow access for everybody on the Internet
+- the port `4443` needs to be forwarded to the server, if the server is behind NAT (like my raspberry pi)
+- the path `/home/ubuntu/pgrok/certs` needs to be created and needs to contain the ssl certs
+- the certs for Traefik needs to be installed in the Traefik directory
+- the Traefik needs to be restarted after the changes (for some unknown reason, it simply didnt discover new certs)
+- you need to deploy docker stack via someting like `sudo docker stack deploy --compose-file pgrokd-compose.yml pgrokd`
+- you need to generate own CA and own client certificates created by your own CA. This CA certificates needs to be installed both on pgrok server and your local machine
+- you can see some steps on the link `https://campus.barracuda.com/product/webapplicationfirewall/doc/12193120/creating-a-client-certificate/`
+- at first, you should generate private key in pem format via: `openssl genrsa 2048 > ca-key.pem`
+- then you will generate CA file via `openssl req -new -x509 -nodes -days 1000 -key ca-key.pem > ca-cert.pem`
+- then you need to install this cert to both client and server. If you are using Ubuntu, you can use this tutorial: `https://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate/1159454#1159454`
+- then you can create client certificates via `openssl req -newkey rsa:2048 -days 1000 -nodes -keyout client-key1.pem > client-req.pem`
+- then create client certificate, which will be signed via your own CA - `openssl x509 -req -in client-req.pem -days 1000 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 > client-cert1.pem`
+- the generated CA, client public key and client private key you will use for the pgrok client command
+
+### 4.2 Pgrok connection
+- download pgrok client (pgrok, not pgrokd) from `https://github.com/jerson/pgrok/releases`
+
+- you can connect to pgrok via command:  
+`pgrok -log=stdout -serveraddr=YOUR-website.domain:4443 -tlsClientCrt=client.crt -tlsClientKey=client.key -subdomain=subdomain 127.0.0.1:8090` The 8090 port is your local port you want to expose to public internet. Feel free to change that port according your needs.
+
+NOTE: You need to use `client.crt`, `client.key` and also  `ca-cert.pem` . The `ca-cert.pem` needs to be installed on your OS as root CA cert. If you are using Ubuntu, follow this tutorial `https://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate/1159454#1159454` If you are running on MacOS, I think you need to open the CA cert in keychain and install it to OS as root CA cert.
+
+Without this steps, you will not be able to connect to that pgrok service and in command line the bad tls certificate error will be shown.
+
+### 4.3 Auto start your Pgrok tunel
+If you need your Pgrok tunel available 24/7, it is good way to set it up as Systemd service.
+
+```
+cd ~/pgrok
+vim pgrok_ip_electricity_saver.sh
+```
+Insert content:
+```
+#!/bin/bash
+
+pgrok -log=stdout -serveraddr=YOUR-website.domain:4453 -tlsClientCrt=/home/ubuntu/pgrok/certs/client.crt -tlsClientKey=/home/ubuntu/pgrok/certs/client.key -subdomain=electricity-saver 127.0.0.1:8090
+```
+Add executable permission:  
+```
+chmod +x pgrok_ip_electricity_saver.sh
+```
+
+Then we set the service:  
+`sudo vim /etc/systemd/system/pgrok-ip_electricity_saver.service`
+
+```
+[Unit]
+After=nginx.service 
+
+[Service]
+ExecStart=/home/ubuntu/pgrok/pgrok_ip_electricity_saver.sh
+
+[Install]
+WantedBy=default.target
+```
+And finally activate it:  
+```
+sudo chmod 664 /etc/systemd/system/pgrok-ip_electricity_saver.service
+sudo systemctl enable pgrok-ip_electricity_saver.service
+sudo systemctl start pgrok-ip_electricity_saver.service
+sudo systemctl status pgrok-ip_electricity_saver.service
+```
+Check in browser `electricity-saver.YOUR-website.domain`, we should be able log into the Electricity Saver app.

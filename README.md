@@ -1,7 +1,7 @@
 # README
 Electricity-saver is self-hosted uptime monitoring tool with ability to switch on/off smart plug via Home Assistant REST API
 
-Why should you should use this project?  
+Why should you use this project?  
 - you want to monitor your network via ping requests
 - you want to track the history of your ping requests 
 - you want devices in your network switch on/off by cron, e.g. turn on your Starlink internet in specific times

@@ -1,5 +1,24 @@
 # README
-See [screenshots](https://github.com/Matho/electricity-saver/tree/screenshots/screenshots)
+Electricity-saver is self-hosted uptime monitoring tool with ability to switch on/off smart plug via Home Assistant REST API
+
+Why should you should use this project?  
+- you want to monitor your network via ping requests
+- you want to track the history of your ping requests 
+- you want devices in your network switch on/off by cron, e.g. turn on your Starlink internet in specific times
+- you want to see, how much electricity your Starlink took for each day
+- you want to see changes of turn on / turn off in event log
+- you want to schedule on/off events to your smart plug
+- you want to schedule automatic start for your Starlink connected in your smart plug
+- you want to see history of states of your smart plug device
+- you want to login to this app without need of public IP address (reverse tunnel via Pgrok) 
+
+For more info, check [screenshots](https://github.com/Matho/electricity-saver/blob/screenshots/screenshots/screenshots_index.md)
+
+
+Project is written in Ruby on Rails framework and Docker image is based on Ubuntu. 
+
+NOTE: If you want to switch on/off your smart plug, you need to have smart plug compatible with Home Assistant software. Also, you need some version of Raspberry PI, where Home Assistant software and this project will be running.
+
 
 ## ENV Credentials
 HOW TO: [https://blog.saeloun.com/2019/10/10/rails-6-adds-support-for-multi-environment-credentials.html](https://blog.saeloun.com/2019/10/10/rails-6-adds-support-for-multi-environment-credentials.html)

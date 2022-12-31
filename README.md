@@ -21,9 +21,9 @@ Open `http://localhost:3000/users/sign_up` in your browser and fill in registrat
 Then navigate to `http://localhost:3000/users/sign_in` and login via your password. You should be correctly signed in the app.
 
 ## Build Docker image
-Rename `secrets.yml.example` to `secrets.yml` and specify your secret value for production
+In config dir rename `secrets.yml.example` to `secrets.yml` and specify your secret value for production
 
-Build the app on the Raspberry PI:  
+Build the app on the Raspberry PI (provide RAILS_MASTER_KEY env, which is output of config/master.key)  
 ``` 
 $ sudo docker build --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=XXX -t mathosk/electricity-saver:latest_aarch64 .
 ```
@@ -35,11 +35,13 @@ $ sudo docker push mathosk/electricity-saver:latest
 Alternatively, tag the build with release version
 
 ## Start the app
-Allow port for main app  
-`$ ufw allow 8090`
+Allow port for main app, if you need to do it 
+`$ sudo ufw allow 8090`
 
 Create docker network  
 `$ sudo docker network create electricity-saver-nw`
+
+Specify your postgres password in docker-compose file 
 
 Start the docker-compose via:  (use `-d` for detached state at the end of command)  
 `sudo docker-compose -f docker-compose_aarch64.yml up`  
@@ -50,14 +52,17 @@ Optional, if you want to seed some initial data:
 
 `sudo docker-compose -f docker-compose_aarch64.yml up -d`  
 
-Visit `http://10.0.2.5:8090/users/sign_up`  
+Visit `http://your-ip:8090/users/sign_up` and register yourself. It will generate 5xx error, because email sending is not configured.
+If you configure email sending in project, you need to ensure, nobody is possible to login to this tool.
 
 Select container with rails project and copy hash:  
 `$ sudo docker container ls -a`  
-`$ sudo docker container exec -it c82b39edfa70 bash`
+`$ sudo docker container exec -it be94a012b66a bash`
 
 Execute rails console in rails project  
 `$ bundle exec rails c`
 
 Activate your admin user:  
 `User.last.update!(confirmed_at: Time.now)`
+
+Logout from docker container and visit `http://your-ip:8090` Sign in via the password you set during registration 

@@ -376,7 +376,7 @@ I have followed the accepted answer on [https://serverfault.com/questions/100394
 ## 6. PiJuice HAT - battery for Raspberry PI
 Do you afraid the electricity outage? I recommend to install [PiJuice HAT](https://rpishop.cz/ups/930-pijuice-hat-616909467655.html)
 
-It is possible to configure soft-shutdown in case of low battery charge. But at first you need to instal required software.
+It is possible to configure soft-shutdown in case of low battery charge. But at first you need to install required software.
 This was tested on Ubuntu 20.04 and Ubuntu 22.04 aarch64
 
 ```
@@ -395,3 +395,6 @@ $ sudo pijuice_cli
 Select `System events > Low charge > System func halt` and also `System Task > Min charge > enable treshold pod 10%` 
 
 Now it should do soft-shutdown, when battery charge meet 10% charge status
+
+## 7. SSD disc instead of microSD card
+I recommend do not use microSD cards and use ssd disc instead. Here is detailed gist [how to migrate from microSD card to USB SSD disc](https://gist.github.com/Matho/e19da93c367114f330d1dd076a0ed392)

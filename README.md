@@ -364,3 +364,34 @@ sudo systemctl start pgrok-ip_electricity_saver.service
 sudo systemctl status pgrok-ip_electricity_saver.service
 ```
 Check in browser `electricity-saver.YOUR-website.domain`, we should be able log into the Electricity Saver app.
+
+
+## 5. Remote ssh to Raspbery PI
+If you want to ssh to the Raspberry PI with Electricity Saver software or do redeploys from home, you will want to ssh to the remote rpi.
+
+I'm using [Zero Tier](https://www.zerotier.com/) It is free. 
+
+I have followed the accepted answer on [https://serverfault.com/questions/1003948/exposing-lan-with-zerotier-when-using-ubiquiti-edge-router-x](https://serverfault.com/questions/1003948/exposing-lan-with-zerotier-when-using-ubiquiti-edge-router-x)
+
+## 6. PiJuice HAT - battery for Raspberry PI
+Do you afraid the electricity outage? I recommend to install [PiJuice HAT](https://rpishop.cz/ups/930-pijuice-hat-616909467655.html)
+
+It is possible to configure soft-shutdown in case of low battery charge. But at first you need to instal required software.
+This was tested on Ubuntu 20.04 and Ubuntu 22.04 aarch64
+
+```
+$ sudo apt-get install python3-urwid
+$ wget https://github.com/PiSupply/PiJuice/raw/master/Software/Install/pijuice-base_1.8_all.deb
+$ sudo apt-get install i2c-tools
+$ sudo apt-get install python3-smbus
+$ sudo dpkg -i ./pijuice-base_1.8_all.deb
+$ sudo reboot
+```
+
+Start the configuration:  
+```
+$ sudo pijuice_cli
+```
+Select `System events > Low charge > System func halt` and also `System Task > Min charge > enable treshold pod 10%` 
+
+Now it should do soft-shutdown, when battery charge meet 10% charge status

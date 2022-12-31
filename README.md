@@ -19,14 +19,15 @@ Project is written in Ruby on Rails framework and Docker image is based on Ubunt
 
 **NOTE**: If you want to switch on/off your smart plug, you need to have smart plug compatible with Home Assistant software. Also, you need some version of Raspberry PI, where Home Assistant software and this project will be running. I'm using Raspberry PI 4 with 8GB ram, but 2GB version should be good enough.
 
-## ENV Credentials
-HOW TO: [https://blog.saeloun.com/2019/10/10/rails-6-adds-support-for-multi-environment-credentials.html](https://blog.saeloun.com/2019/10/10/rails-6-adds-support-for-multi-environment-credentials.html)
+## Postgresql development credentials
+Development credentials are encrypted. To be able edit the credentials, execute following command from this root of project:  
 
-Edit ENV for development:  
+`$ echo '2ef7e3a8a8aec9a980640a99e5523eb4' >> config/master.key`
+
+Edit ENV for development: 
 ```
 $ EDITOR=vim rails credentials:edit
 ```
-
 
 ## 1. Start project on localhost in development mode
 If you need, you can play with the project on your localhost.   
@@ -50,7 +51,7 @@ In config dir rename `secrets.yml.example` to `secrets.yml` and specify your sec
 
 Build the app on the Raspberry PI (provide RAILS_MASTER_KEY env, which is output of config/master.key)  
 ``` 
-$ sudo docker build --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=XXX -t mathosk/electricity-saver:latest_aarch64 .
+$ sudo docker build --build-arg RAILS_ENV=production --build-arg RAILS_MASTER_KEY=2ef7e3a8a8aec9a980640a99e5523eb4 -t mathosk/electricity-saver:latest_aarch64 .
 ```
 
 ## 2.1 Start the app via Docker on Raspberry PI

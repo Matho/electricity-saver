@@ -65,4 +65,12 @@ Execute rails console in rails project
 Activate your admin user:  
 `User.last.update!(confirmed_at: Time.now)`
 
-Logout from docker container and visit `http://your-ip:8090` Sign in via the password you set during registration 
+Logout from docker container and visit `http://your-ip:8090` Sign in via the password you set during registration
+
+## First steps
+- create your network
+- create devices
+- create smart plug
+- create custom rules
+- check if ping works
+- check if automat is scheduling the events

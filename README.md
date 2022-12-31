@@ -47,6 +47,8 @@ Then navigate to `http://localhost:3000/users/sign_in` and login via your passwo
 ## 2. Build Docker image on Raspberry PI
 I recommend Raspberry PI 4 with minimum of 2GB ram. 
 
+**Note:** You do not need to build docker image for this project. You can use the image from my Docker Hub - skip to next chapter. 
+
 In config dir rename `secrets.yml.example` to `secrets.yml` and specify your secret value for production
 
 Build the app on the Raspberry PI (provide RAILS_MASTER_KEY env, which is output of config/master.key)  

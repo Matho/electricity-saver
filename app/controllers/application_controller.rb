@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :info, :error
 
   before_action :authenticate_user!
-  before_action :set_network, only: %i[ index show edit update destroy ]
+  before_action :set_network, only: %i[ index new create show edit update destroy ]
 
   def choose_network
     @networks = Network.all.order(:id)

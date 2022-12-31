@@ -1,6 +1,5 @@
 class PingStatsService
   RETRY_COUNTS = 2
-  TIMEOUT_BETWEEN_REQUESTS = 0.2
   TIMEOUT = 2
   def initialize(network)
     @network = network
@@ -8,16 +7,17 @@ class PingStatsService
 
   def process
     @network.endpoint_devices.with_active_monitoring.each do |endpoint_device|
-      ip_address = endpoint_device.ip_address
+      host, port = endpoint_device.ip_address.split(':')
 
-      net_ping = Net::Ping::External.new(ip_address)
+      Net::Ping::TCP.service_check = true
+      net_ping = Net::Ping::TCP.new(host, port.presence, TIMEOUT)
 
-      success = net_ping.ping?(ip_address, RETRY_COUNTS, TIMEOUT_BETWEEN_REQUESTS, TIMEOUT)
-      duration = net_ping.duration # miliseconds
+      success = net_ping.ping?
+      duration = net_ping.duration.to_i * 1000.0 # ms
 
       PingStat.create!({
-                        ip_address: ip_address,
-                        response_time: duration,
+                        ip_address: endpoint_device.ip_address,
+                        response_time: duration.round(2),
                         response_code: nil,
                         response_status: success ? 'OK' : 'FAIL',
                         network_id: @network.id

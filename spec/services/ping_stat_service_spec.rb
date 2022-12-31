@@ -24,7 +24,7 @@ RSpec.describe PingStatsService do
         }
 
         it 'works' do
-          allow_any_instance_of(Net::Ping::External).to receive(:ping?).and_return(true)
+          allow_any_instance_of(Net::Ping::TCP).to receive(:ping?).and_return(true)
 
           PingStatsService.new(network).process
 
@@ -42,7 +42,7 @@ RSpec.describe PingStatsService do
         }
 
         it 'works' do
-          allow_any_instance_of(Net::Ping::External).to receive(:ping?).and_return(true)
+          allow_any_instance_of(Net::Ping::TCP).to receive(:ping?).and_return(true)
 
           PingStatsService.new(network).process
           PingStatsService.new(network).process

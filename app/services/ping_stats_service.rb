@@ -14,7 +14,7 @@ class PingStatsService
       net_ping = Net::Ping::TCP.new(host, port.presence || DEFAULT_PING_PORT, TIMEOUT)
 
       success = net_ping.ping?
-      duration = net_ping.duration.to_i * 1000.0 # ms
+      duration = net_ping.duration.to_d * 1000.0 # ms
 
       PingStat.create!({
                         ip_address: endpoint_device.ip_address,

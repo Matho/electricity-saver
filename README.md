@@ -398,3 +398,36 @@ Now it should do soft-shutdown, when battery charge meet 10% charge status
 
 ## 7. SSD disc instead of microSD card
 I recommend do not use microSD cards and use ssd disc instead. Here is detailed gist [how to migrate from microSD card to USB SSD disc](https://gist.github.com/Matho/e19da93c367114f330d1dd076a0ed392)
+
+## 8. Postgres backuping
+
+Because we want to use pg_dump utility and we don't have installed Postgres on our node (Postgres is in Docker container), we need to install Postgres client package.
+By default in Ubuntu 22.04 the v14 of Postgres is present. But we need the version 15, because also in Docker the v15 is used.
+Note: we are not installing whole Postgres v15, only client packages to be able execute backup for port 5433, which is mapped to Postgres in Docker.
+```
+$ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+$ wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
+
+$ sudo apt update
+
+$ sudo apt install postgresql-client-15
+
+$ psql --version
+```
+
+To do some advanced backup, I'm using scripts from this page https://wiki.postgresql.org/wiki/Automated_Backup_on_Linux I have copied pg_backup.config and pg_backup_rotated.sh scripts. Ensure, the pg_backup_rotated.sh is runnable (chmod +x)
+
+If you have setup password for Postgres, put before each call of psql or pgdump the new env `PGPASSWORD="$PASSWORD"`  The PASSWORD env setup in the config file.
+Also, for each pgdump or psql command, add command option `--port 5433` to connect to 5433 port instead default 5432 port.
+
+Try to run the script, if it works:  
+```
+$ sudo ./pg_backup_rotated.sh
+```
+If works, setup crontab:  
+``` 
+$ sudo crontab -e
+0 2 * * * /bin/bash /home/ubuntu/pg_backuping/pg_backup_rotated.sh
+```
+ 

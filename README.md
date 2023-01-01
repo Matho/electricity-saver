@@ -14,6 +14,9 @@ Why should you use this project?
 
 For more info, check [screenshots](https://github.com/Matho/electricity-saver/blob/screenshots/screenshots/screenshots_index.md)
 
+Dashboard screenshot:  
+![Dashboard image](https://raw.githubusercontent.com/Matho/electricity-saver/a77eff83f80ab271128e46c505dd4beb4472dc6f/screenshots/12_dashboard.png)
+
 
 Project is written in Ruby on Rails framework and Docker image is based on Ubuntu. 
 

@@ -1,4 +1,6 @@
 # README
+[![Ruby on Rails CI](https://github.com/Matho/electricity-saver/actions/workflows/rubyonrails.yml/badge.svg?branch=main)](https://github.com/Matho/electricity-saver/actions/workflows/rubyonrails.yml)
+
 Electricity-saver is self-hosted uptime monitoring tool with ability to switch on/off smart plug via Home Assistant REST API
 
 Why should you use this project?  

@@ -35,3 +35,4 @@
 /config/secrets.yml
 
 docker-compose_aarch64.yml.prod
+.rvmrc

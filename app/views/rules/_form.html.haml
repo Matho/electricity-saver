@@ -7,13 +7,13 @@
     = f.radio_button :action, '1', label: "Turn off", checked: f.object.action == 'turn_off'
     = f.radio_button :action, '0', label: "Turn on", checked: f.object.action == 'turn_on'
 
-  = f.text_field :cron_monday
-  = f.text_field :cron_tuesday
-  = f.text_field :cron_wednesday
-  = f.text_field :cron_thursday
-  = f.text_field :cron_friday
-  = f.text_field :cron_saturday
-  = f.text_field :cron_sunday
+  = f.text_field :cron_monday, help: 'In the format * * * * * but specify only minutes and hours'
+  = f.text_field :cron_tuesday, help: 'In the format * * * * * but specify only minutes and hours'
+  = f.text_field :cron_wednesday, help: 'In the format * * * * * but specify only minutes and hours'
+  = f.text_field :cron_thursday, help: 'In the format * * * * * but specify only minutes and hours'
+  = f.text_field :cron_friday, help: 'In the format * * * * * but specify only minutes and hours'
+  = f.text_field :cron_saturday, help: 'In the format * * * * * but specify only minutes and hours'
+  = f.text_field :cron_sunday, help: 'In the format * * * * * but specify only minutes and hours'
 
   = f.hidden_field :network_id
 

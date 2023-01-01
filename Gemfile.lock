@@ -109,7 +109,6 @@ GEM
       tzinfo
       unicode
     date (3.3.3)
-    debug (1.7.1)
     devise (4.8.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -332,7 +331,6 @@ DEPENDENCIES
   bootstrap_form (~> 5.1)
   capybara
   cronex
-  debug
   devise
   factory_bot_rails
   haml

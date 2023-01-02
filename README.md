@@ -397,7 +397,7 @@ Start the configuration:
 ```
 $ sudo pijuice_cli
 ```
-Select `System events > Low charge > System func halt` and also `System Task > Min charge > enable treshold pod 10%` 
+Select `System events > Low charge > SYS_FUNC_HALT_POW_OFF` and also `System Task > Min charge > enable treshold to 15%` 
 
 Now it should do soft-shutdown, when battery charge meet 10% charge status
 

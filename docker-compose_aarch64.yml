@@ -3,6 +3,7 @@ version: "3.0"
 services:
   electricity_saver_postgres:
     image: 'postgres:15.1-alpine'
+    restart: always
     volumes:
       - '/data/electricity_saver_postgres:/home/postgres'
     ports:
@@ -18,7 +19,7 @@ services:
 
   electricity_saver_redis:
     image: 'redis:6-alpine'
-
+    restart: always
     command: redis-server
     ports:
       - '6379:6379'
@@ -29,6 +30,7 @@ services:
 
   electricity_saver_sidekiq:
     image: "mathosk/electricity-saver:latest_aarch64"
+    restart: always
     depends_on:
       - 'electricity_saver_postgres'
       - 'electricity_saver_redis'

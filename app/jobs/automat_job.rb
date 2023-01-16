@@ -1,6 +1,6 @@
 class AutomatJob < ApplicationJob
   queue_as :default
-  sidekiq_options retry: 0
+  sidekiq_options retry: false
 
   def perform(*args)
     Network.with_active.each do |network|

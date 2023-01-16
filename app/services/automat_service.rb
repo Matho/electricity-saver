@@ -36,6 +36,11 @@ class AutomatService
       {
         status: :finished
       }
+    else
+      # Smart plug was turned on via own app, outside Electricity-saver
+      {
+        status: :skipped
+      }
     end
   end
 
